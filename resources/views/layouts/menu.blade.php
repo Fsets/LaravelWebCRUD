@@ -39,14 +39,14 @@
                     @endif
                 </a>
             </li>
-            <li class="menu-item {{ Request::is('editUsuario*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
-                <a href="{!! route('editUsuario') !!}" class="menu-link">
-                    @if(Request::is('editUsuario*')) <!--si el menu esta seleccionado entonces cambia color-->
+            <li class="menu-item {{ Request::is('crear_user*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                <a href="{!! route('crear_user') !!}" class="menu-link">
+                    @if(Request::is('crear_user*')) <!--si el menu esta seleccionado entonces cambia color-->
                     <span class="svg-icon menu-icon"><img src="{{url('assets/media/custom_identya/accion-editar-gris.svg')}}" width="20px" height="auto"></span>
-                    <span class="menu-text text-white">Editar Usuario</span>
+                    <span class="menu-text text-white">Crear Usuario</span>
                     @else
                     <span class="svg-icon menu-icon"><img src="{{url('assets/media/custom_identya/accion-editar-gris.svg')}}" width="20px" height="auto"></span>
-                    <span class="menu-text text-color-purple-blue">Editar Usuario</span>
+                    <span class="menu-text text-color-purple-blue">Crear Usuario</span>
                     @endif
                 </a>
             </li>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Foto;
 use App\Http\Requests\RegisterRequest;
 
@@ -20,23 +21,27 @@ class webController extends Controller
         $users = User::all();
         return view("home")->with('users', $users); //para enviar datos al blade
     }
-    
-    public function users(){
-        
-        return view("home", compact('users'));
+
+    public function logout(Request $request) {
+        $r= $request->session()->flush(); //termina la sesion actual y redirige al login
+        return redirect('/');
     }
 
-    public function editUsuario()
+    public function crear_user()
     {
         //
-        return view("usuario.editUsuario");
+        $user = User::all();
+        return view("usuario.crearUsuario")->with('user', $user);
     }
-    
 
-    public function IniciarSesion()
-    {
-        //
-        return view("usuario.loginUsuario");
+    public function newUsuario(Request $request){
+        $user = User::create([
+            'id' => $request->id,
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' =>bcrypt($request->password)
+        ]);
+        return redirect('home');
     }
 
     /**
@@ -57,19 +62,18 @@ class webController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $entrada = $request->all(); //almacena en entrada el resultado de toda la consulta que hagamos en la bd
         if($archivo=$request->file('foto_id')){ //si hay imagen
             $nombre= $archivo->getClientOriginalName(); 
             $archivo->move('images', $nombre);
             $foto= Foto::create(['ruta_foto'=> $nombre]);
             $entrada['foto_id'] = $foto->id;
-
         }
         //encriptar la contraseña
         $entrada['password']= bcrypt($request->password);
         User::create($entrada); //crea el objeto usuario
-        return redirect("usuario");
+        
+        return redirect('home'); //redirecciona a esa pagina
     }
 
     /**
@@ -81,6 +85,8 @@ class webController extends Controller
     public function show($id)
     {
         //
+        $user= User::find($id); //almacena el usuario que queremos ver en concreto para luego editar
+        return view("usuario.editUsuario")->with('user', $user); 
     }
 
     /**
@@ -93,23 +99,9 @@ class webController extends Controller
     public function edit($id)
     {
         //
-        $user= User::findOrFail($id);
-        return view("usuario.editUsuario", compact("producto"));
-    }
-
-    public function editarUsuario(Request $request){
-        //pasamos parametros de la bd a variables para usar
-        $id = $request->id;
-        $name = $request->name;
-        $email = $request->email;
-
-        //buscamos el usuario a editar
-        $user = User::find($id);
-        $user->name= $name;
-        $user->email= $email;
-        $user->save();
-
-        return redirect('/home');
+        $user = User::findOrFail($id);//Mediante este metodo findorfail hacemos una busqueda del id del usuario que nos llega por parametros de la tabla para ver si dicho usuario existe
+        return view('usuario.editUsuario')->with('user', $user);// ridirigimos toda la informacion del usuario a la vista para su posterior edicion
+        
     }
 
     /**
@@ -122,8 +114,7 @@ class webController extends Controller
     public function update(Request $request, $id)
     {
         //
-        
-        $user= User::findOrFail($id); //almacenamos usuario
+        $user= User::find($id); //almacenamos usuario
         $entrada= $request->all();
         if($archivo=$request->file('foto_id')){ //si hay imagen
             $nombre= $archivo->getClientOriginalName(); 
@@ -133,7 +124,7 @@ class webController extends Controller
         }
         $user->update($entrada); //actualiza la informacion en la bd
 
-        return redirect('usuario');
+        return redirect('home');
     }
 
     /**
@@ -145,5 +136,8 @@ class webController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::find($id);
+        $user->delete();
+        return redirect('home');
     }
 }

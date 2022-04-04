@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
-                @include('usuario.tablaUsuarios') <!-- hay q incluir el yield para llamar-->
+                @include('usuario.tablaUsuarios') <!-- hay q incluir el yield para llamar hay q estar logueados para  que funcione sino da error de variable users-->
                 
             </div>
 
