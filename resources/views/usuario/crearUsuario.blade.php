@@ -30,7 +30,14 @@
                         </div>
                         <div class="form-group">
                           <label class="font-weight-bolder text-dark">Password</label>
-                          <input class="form-control h-auto py-4 px-4 bg-light-brown" type="text" name="password"/>
+                          <input class="form-control h-auto py-4 px-4 bg-light-brown" type="password" name="password"/>
+                        </div>
+                        <div class="form-group">
+                          <label class="font-weight-bolder text-dark">Asignar Rol</label>
+                          <select name="role_id" class="form-control h-auto py-4 px-4 bg-light-brown">
+                              <option value="1">Administrador</option>
+                              <option value="2">Usuario</option>
+                          </select>
                         </div>
                         <div class="modal-footer d-flex justify-content-between border-0">
                           <a href="{{route('home')}}" class="btn btn-brown font-weight-bold">Cancelar</a>

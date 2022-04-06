@@ -15,6 +15,16 @@ class webController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        /**
+         * Asigno el middleware auth al controlador,
+         * de modo que sea necesario estar al menos autenticado
+         */
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //

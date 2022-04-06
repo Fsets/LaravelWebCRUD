@@ -21,8 +21,8 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth', 'verified']], function(){
     Route::get('home', [App\Http\Controllers\webController::class, 'index'])->name('home');
-    Route::resource('usuario', webController::class);
-    Route::get('/crear_user', [App\Http\Controllers\webController::class, 'crear_user'])->name('crear_user');
+    Route::resource('usuario', webController::class)->middleware('role:role_id');
+    Route::get('/crear_user', [App\Http\Controllers\webController::class, 'crear_user'])->name('crear_user')->middleware('role:role_id');
     Route::post('/newUsuario', [App\Http\Controllers\webController::class, 'newUsuario'])->name('newUsuario');
     Route::get('/logout', [App\Http\Controllers\webController::class, 'logout'])->name('logout');
 });

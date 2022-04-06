@@ -53,6 +53,17 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-3 text-lg-right text-left">Asignar Rol</label>
+                                            <div class="col-9">
+                                                <div class="input-group input-group-lg input-group-solid">
+                                                    <select name="role_id" class="form-control form-control-lg form-control-solid">
+                                                        <option value="1">Administrador</option>
+                                                        <option value="2">Usuario</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!--end::Group-->
                                     <div class="modal-footer d-flex justify-content-between border-0">

@@ -30,9 +30,6 @@
         <div class="d-flex flex-column flex-root">
             <div class="login login-1 login-signin-on d-flex flex-column flex-lg-row flex-column-fluid bg-login" id="kt_login">
                 <div class="col-md-10 flex-row-fluid d-flex flex-column justify-content-center position-relative overflow-hidden p-7 mx-auto">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <img class="logo-login" src="{{url('svg/logotipo-front.svg')}}"/>
-                    </div>
                     <!--begin::Content body-->
                     <div class="d-flex flex-column-fluid flex-center">
                         <!--begin::Signin-->

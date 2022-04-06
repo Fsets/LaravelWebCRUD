@@ -57,14 +57,3 @@
 </div>
 <!--SUBMENU-->
 <!--begin::Footer-->
-<div class="aside-footer flex-column-auto position-absolute bottom-0 w-100 mb-3" id="kt_aside_footer">
-    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn d-flex align-items-center justify-content-center" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="200+ in-house components and 3rd-party plugins">
-        <!--<img class="mr-2"src="{{url('assets/media/custom_identya/identya-cerrar-sesion-azul.svg')}}" width="20px" height="auto">-->
-        <span class="text-color-purple-blue">Cerrar sesión</span>
-    </a>
-</div>
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    {{ csrf_field() }}
-</form>
-
-<!--end::Footer-->
