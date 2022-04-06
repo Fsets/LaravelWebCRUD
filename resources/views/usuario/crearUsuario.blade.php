@@ -22,15 +22,15 @@
                     <div class="modal-body py-0">
                         <div class="form-group">
                           <label class="font-weight-bolder text-dark">Nombre</label>
-                          <input class="form-control h-auto py-4 px-4 bg-light-brown" type="text" name="name"/>
+                          <input class="form-control h-auto py-4 px-4 bg-light-brown" type="text" name="name" required/>
                         </div>
                         <div class="form-group">
                           <label class="font-weight-bolder text-dark">Email</label>
-                          <input class="form-control h-auto py-4 px-4 bg-light-brown" type="text" name="email"/>
+                          <input class="form-control h-auto py-4 px-4 bg-light-brown" type="text" name="email" required/>
                         </div>
                         <div class="form-group">
                           <label class="font-weight-bolder text-dark">Password</label>
-                          <input class="form-control h-auto py-4 px-4 bg-light-brown" type="password" name="password"/>
+                          <input class="form-control h-auto py-4 px-4 bg-light-brown" type="password" name="password" required/>
                         </div>
                         <div class="form-group">
                           <label class="font-weight-bolder text-dark">Asignar Rol</label>

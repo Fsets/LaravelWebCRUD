@@ -49,7 +49,7 @@
                                             <label class="col-form-label col-3 text-lg-right text-left">Email Address</label>
                                             <div class="col-9">
                                                 <div class="input-group input-group-lg input-group-solid">
-                                                    <input type="text" class="form-control form-control-lg form-control-solid" type="email" name="email" id="emaile">
+                                                    <input type="text" class="form-control form-control-lg form-control-solid" type="email" name="email" id="emaile" required>
                                                 </div>
                                             </div>
                                         </div>
