@@ -5,7 +5,7 @@
         <div class="col-md-8">
             <div class="card">
               <div class="card-header">{{ __('Dashboard') }}</div>
-                <form method="POST" action="{{ route('usuario.store') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('usuario.store') }}" enctype="multipart/form-data"> <!-- llama al store para guardar la info en la bd-->
                     {{ csrf_field() }}
                     <div class="modal-header border-0">
                       <div class="form-group">

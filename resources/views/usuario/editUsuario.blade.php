@@ -5,7 +5,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
-                {!! Form::open(['route' => ['usuario.update', $user], 'method' => 'PUT', 'files' => true, 'enctype' => 'multipart/form-data'])!!}
+                {!! Form::open(['route' => ['usuario.update', $user], 'method' => 'PUT', 'files' => true, 'enctype' => 'multipart/form-data'])!!} <!--llama al update y le pasa el parametro para actualizar el registro-->
                     {{ csrf_field()}}
                     <div class="tab-content">
                         <!--begin::Tab-->
@@ -76,7 +76,7 @@
                     </div>
                 {!! Form::close() !!}
 
-                <div class="modal-footer d-flex justify-content-between border-0">                 
+                <div class="modal-footer d-flex justify-content-between border-0"> <!-- llama al destroy para eliminar el objeto-->             
                     {!! Form::open(['method' => 'DELETE', 'action'=> [[App\Http\Controllers\webController::class, 'destroy'], $user->id]]) !!}
                     {{ csrf_field() }}
                         <input type="hidden" name="_method" value="DELETE">

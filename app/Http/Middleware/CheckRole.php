@@ -17,7 +17,7 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next, $role)
     {
-        if (Auth::user()->$role != 1) {
+        if (Auth::user()->$role != 1) { //comprueba si el usuario es admin o no y le cede paso o lo redirecciona
             return redirect('home')->with('warning', 'Operación no autorizada, no eres admin');
         }
         return $next($request);

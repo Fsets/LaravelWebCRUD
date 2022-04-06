@@ -15,7 +15,7 @@
                     </thead>
                     <tbody>
                         <tr class="odd">
-                        @foreach($users as $user)
+                        @foreach($users as $user) 
                             <tr>
                                 <td ><a href="">{{$user->id}}</a></td>
                                 <td><a href="{{route('usuario.edit', $user->id)}}">{{$user->name}}</a></td>
