@@ -18,11 +18,14 @@ Route::get('/', function () {
     return view('usuario.loginUsuario');
 });
 Auth::routes();
-Route::get('home', [App\Http\Controllers\webController::class, 'index'])->name('home');
-Route::resource('usuario', webController::class);
-Route::get('/crear_user', [App\Http\Controllers\webController::class, 'crear_user'])->name('crear_user');
-Route::post('/newUsuario', [App\Http\Controllers\webController::class, 'newUsuario'])->name('newUsuario');
-Route::get('/logout', [App\Http\Controllers\webController::class, 'logout'])->name('logout');
+
+Route::group(['middleware' => ['auth', 'verified']], function(){
+    Route::get('home', [App\Http\Controllers\webController::class, 'index'])->name('home');
+    Route::resource('usuario', webController::class);
+    Route::get('/crear_user', [App\Http\Controllers\webController::class, 'crear_user'])->name('crear_user');
+    Route::post('/newUsuario', [App\Http\Controllers\webController::class, 'newUsuario'])->name('newUsuario');
+    Route::get('/logout', [App\Http\Controllers\webController::class, 'logout'])->name('logout');
+});
 
 /*Route::resource('usuario', 'App\Http\Controllers\webController');
 Route::post('crearUsuario', [App\Http\Controllers\webController::class, 'store']);

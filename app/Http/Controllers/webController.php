@@ -73,7 +73,7 @@ class webController extends Controller
         $entrada['password']= bcrypt($request->password);
         User::create($entrada); //crea el objeto usuario
         
-        return redirect('home'); //redirecciona a esa pagina
+        return redirect('home')->with('success', 'Usuario creado correctamente'); //redirecciona a esa pagina
     }
 
     /**
@@ -124,7 +124,7 @@ class webController extends Controller
         }
         $user->update($entrada); //actualiza la informacion en la bd
 
-        return redirect('home');
+        return redirect('home')->with('success', 'Usuario Editado correctamente');
     }
 
     /**
@@ -138,6 +138,6 @@ class webController extends Controller
         //
         $user = User::find($id);
         $user->delete();
-        return redirect('home');
+        return redirect('home')->with('info', 'Usuario Eliminado correctamente');
     }
 }

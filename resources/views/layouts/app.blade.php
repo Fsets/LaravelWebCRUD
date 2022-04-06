@@ -58,10 +58,10 @@
             </div>
             <div class="d-flex flex-column flex-column-fluid" id="kt_content">
 				@include('layouts.subheader')<!-- incluye la subcabecera-->
+				@include('flash_message')
 				<div class="content d-flex flex-column-fluid">
 					@yield('content')<!-- llama al contenido de home.blade.php-->
 					@yield('contente')<!-- llama al contenido de editUser.blade.php-->
-					@yield('contentc')<!-- llama al contenido de createUser.blade.php-->
 				</div>
 			</div>
 			<div class="footer bg-light-graybrown py-4 d-flex flex-lg-column" id="kt_footer">

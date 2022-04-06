@@ -40,9 +40,15 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles() {
+        return $this->belongsToMany(Role::class); 
+        }
+
     public function foto(){
         return $this->belongsTo(Foto::class);
     }
@@ -51,9 +57,19 @@ class User extends Authenticatable
         $user = User::find($id);
         return $user->name;
     }
+
     public function getEmailUser($id){
         $user = User::find($id);
         return $user->email;
+    }
+    public function getFotoUser($id){
+        $user = User::find($id);
+        return $user->foto->ruta_foto;
+    }
+
+    public function hasFotoUser($id){
+        $user =User::find($id);
+        return $user->foto;
     }
 
     public function getFirstLetterName($id){

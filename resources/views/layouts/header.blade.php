@@ -26,14 +26,18 @@
         <!--begin::Header-->
         <div class="d-flex align-items-center mt-5">
             <div class="symbol symbol-100 mr-5">
-                <div class="symbol-label" style="background-image:url('/metronic/theme/html/demo1/dist/assets/media/users/300_21.jpg')"></div>
+                @if(Auth::user()->hasFotoUser(Auth::user()->id))
+                <div class="symbol-label"><img src="/images/{{Auth::user()->getFotoUser(Auth::user()->id)}}" width="100px"/></div>
+                @else
+                <div class="symbol-label"><img src="/images/generica.jpg" width="100px"/></div>
+                @endif
                 <i class="symbol-badge bg-success"></i>
             </div>
             <div class="d-flex flex-column">
                 <a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">{{Auth::user()->getNameUser(Auth::user()->id)}}</a>
                 <div class="text-muted mt-1">Application Developer</div>
                 <div class="navi mt-2">
-                    <a href="#" class="navi-item">
+                    <a href="" class="navi-item">
                         <span class="navi-link p-0 pb-2">
                             <span class="navi-icon mr-1">
                                 <span class="svg-icon svg-icon-lg svg-icon-primary">

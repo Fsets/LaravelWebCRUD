@@ -57,7 +57,7 @@
                                     <!--end::Group-->
                                     <div class="modal-footer d-flex justify-content-between border-0">
                                         <button type="submit" class="btn btn-secondary">Guardar cambios</button>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <a href="{{route('home')}}" class="btn btn-secondary">Cancelar</a>
                                     </div>                     
                                 </div>
                             </div>

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('contentc')
+@section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -17,23 +17,25 @@
                       <div class="form-group">
                         <label class="font-weight-bolder text-dark">Image</label>
                         <input type="file" name="foto_id" class="form-control h-auto py-4 px-4 bg-light-brown" placeholder="image"/>
+                      </div>
                     </div>
                     <div class="modal-body py-0">
-                      <div class="form-group">
-                        <label class="font-weight-bolder text-dark">Nombre</label>
-                        <input class="form-control h-auto py-4 px-4 bg-light-brown" type="text" name="name"/>
-                      </div>
-                      <div class="form-group">
-                        <label class="font-weight-bolder text-dark">Email</label>
-                        <input class="form-control h-auto py-4 px-4 bg-light-brown" type="text" name="email"/>
-                      </div>
-                      <div class="form-group">
-                        <label class="font-weight-bolder text-dark">Password</label>
-                        <input class="form-control h-auto py-4 px-4 bg-light-brown" type="text" name="password"/>
-                      </div>
-                    <div class="modal-footer d-flex justify-content-between border-0">
-                      <button type="button" class="btn btn-brown font-weight-bold" data-dismiss="modal">Cancelar</button>
-                      <button type="submit" class="btn btn-blue font-weight-bold">Crear</button>
+                        <div class="form-group">
+                          <label class="font-weight-bolder text-dark">Nombre</label>
+                          <input class="form-control h-auto py-4 px-4 bg-light-brown" type="text" name="name"/>
+                        </div>
+                        <div class="form-group">
+                          <label class="font-weight-bolder text-dark">Email</label>
+                          <input class="form-control h-auto py-4 px-4 bg-light-brown" type="text" name="email"/>
+                        </div>
+                        <div class="form-group">
+                          <label class="font-weight-bolder text-dark">Password</label>
+                          <input class="form-control h-auto py-4 px-4 bg-light-brown" type="text" name="password"/>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-between border-0">
+                          <a href="{{route('home')}}" class="btn btn-brown font-weight-bold">Cancelar</a>
+                          <button type="submit" class="btn btn-blue font-weight-bold">Crear</button>
+                        </div>
                     </div>
                 </form>
             </div>
