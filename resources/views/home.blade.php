@@ -15,3 +15,11 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+<script>
+    var url_list_usuarios = "{!! url('list_usuarios') !!}";
+</script>
+
+<script src="{{url('assets/js/table.js')}}"></script>
+@endsection

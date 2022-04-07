@@ -25,6 +25,8 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
     Route::get('/crear_user', [App\Http\Controllers\webController::class, 'crear_user'])->name('crear_user')->middleware('role:role_id'); //el middleware hace que solo los admins puedan crear usuarios
     Route::post('/newUsuario', [App\Http\Controllers\webController::class, 'newUsuario'])->name('newUsuario');
     Route::get('/logout', [App\Http\Controllers\webController::class, 'logout'])->name('logout');
+
+    Route::post('/list_usuarios', [App\Http\Controllers\webController::class, 'list_usuarios'])->name('list_usuarios');
 });
 
 /*Route::resource('usuario', 'App\Http\Controllers\webController');

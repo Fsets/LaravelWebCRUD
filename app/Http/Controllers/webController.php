@@ -54,6 +54,58 @@ class webController extends Controller
         return redirect('home');
     }
 
+    public function list_usuarios(Request $request){ //lo llama desde el web.php -> home.blade
+        //para mostrar las paginas
+        //Elementos para la paginación 
+        $pagination = $request->get('pagination');
+        $query = $request->get('query');
+        $start = 0;
+        $skip = $pagination['perpage'];
+        if($pagination['page'] != 1){
+            $start = ($pagination['page'] - 1) * $pagination['perpage'];
+            //Consultamos si hay tantos registros como para empezar en el numero de $start
+            $num_user = User::count();
+            if($start >= $num_user){
+                $skip = $skip - 1;
+                $start = $start - 10;
+                if($start < 0){
+                    $start = 0;
+                }  
+            }
+        }
+
+        //Barra de busqueda
+        $search = '';
+        if(isset($query['search_products'])){
+            $search = $query['search_products'];
+        }
+
+        $array_users = User::where('name', 'like', '%'.$search.'%')->skip($start)->take($skip)->get();
+        //$array_users = User::where('name', 'like', '%'.$search.'%')->get();
+        $count_users = User::where('name', 'like', '%'.$search.'%')->count();
+        
+
+        $rowIds[]= array(); //declaramos variable que tiene todos los ids
+
+        foreach($array_users as $user) {
+            $rowIds[] = $user->id;
+        }
+
+        $meta['rowids']= $rowIds;
+        $meta['page'] = $pagination['page'];
+        $meta['pages'] = 1;
+        if(isset($pagination['pages'])){
+            $meta['pages'] = $pagination['pages'];
+        }
+        $meta['perpage'] = $pagination['perpage'];
+        $meta['total'] = $count_users;
+        $meta['sort'] = 'asc';
+        $meta['field'] = 'id';
+        $response['meta']= $meta;
+        $response['data']= $array_users;
+        return response()->json($response);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

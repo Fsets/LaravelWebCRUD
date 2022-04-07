@@ -88,12 +88,13 @@
         <script src="{{asset('assets/plugins/global/plugins.bundle.js?v=7.2.8')}}"></script>
 		<script src="{{asset('assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.2.8')}}"></script>
 		<script src="{{asset('assets/js/scripts.bundle.js?v=7.2.8')}}"></script>
+		
 		<!--end::Global Theme Bundle-->
 		<!--begin::Page Scripts(used by this page)-->
 		<script src="{{asset('assets/plugins/custom/sweetalert/dist/sweetalert.min.js')}}" type="text/javascript"></script>
 		@yield('scripts')
 		<script>
-
+			
 		</script>
 		<!--end::Page Scripts-->
     </body>
