@@ -9,15 +9,19 @@
                 @include('usuario.tablaUsuarios') <!-- hay q incluir el yield para llamar hay q estar logueados para  que funcione sino da error de variable users-->
                 
             </div>
-
         </div>
-
     </div>
 </div>
 @endsection
 
 @section('scripts')
 <script>
+    var url_img = "{!! url('assets/media/custom_identya') !!}";
+    var url_upload_img = "{!! url('images') !!}";
+
+    var url_delete_user = "{!! url('delete_user') !!}";
+    var url_get_user = "{!! url('get_user') !!}";
+
     var url_list_usuarios = "{!! url('list_usuarios') !!}";
 </script>
 

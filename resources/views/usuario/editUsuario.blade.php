@@ -1,92 +1,49 @@
-@extends('layouts.app')
-@section('contente')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-                {!! Form::open(['route' => ['usuario.update', $user], 'method' => 'PUT', 'files' => true, 'enctype' => 'multipart/form-data'])!!} <!--llama al update y le pasa el parametro para actualizar el registro-->
-                    {{ csrf_field()}}
-                    <div class="tab-content">
-                        <!--begin::Tab-->
-                        <div class="tab-pane show px-7 active" id="kt_user_edit_tab_1" role="tabpanel">
-                            <!--begin::Row-->
-                            <div class="row">
-                                <div class="col-xl-2"></div>
-                                <div class="col-xl-7 my-2">
-                                    <!--begin::Row-->
-                                    <div class="row">
-                                        <label class="col-3"></label>
-                                        <div class="col-9">
-                                            <h6 class="text-dark font-weight-bold mb-10">Edita la Informacion del Usuario:</h6>
-                                        </div>
-                                    </div>
-                                    <!--end::Row-->
-                                    <!--begin::Group avatar-->
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-3 text-lg-right text-left">Avatar</label>
-                                        <div class="col-9">
-                                            <div class="modal-body py-0">
-                                                <div class="form-group">
-                                                  <label class="font-weight-bolder text-dark"><img src="/images/{{$user->foto ? $user->foto->ruta_foto : 'generica.jpg'}}" width="150"/></label>
-                                                  <input type="file" name="foto_id" class="form-control form-control-lg form-control-solid" placeholder="image"/>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Group-->
-                                    <!--begin::Group-->
-                                    <div class="modal-body py-0">
-                                        <input type="hidden" name="id" id="ide">
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-3 text-lg-right text-left">Nombre del Usuario</label>
-                                            <div class="col-9">
-                                                <input class="form-control form-control-lg form-control-solid" type="text" name="name" id="namee" value="{{$user->name}}">
-                                            </div>
-                                        </div>
-                                        <!--end::Group-->
-                                        <!--begin::Group-->
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-3 text-lg-right text-left">Email Address</label>
-                                            <div class="col-9">
-                                                <div class="input-group input-group-lg input-group-solid">
-                                                    <input type="text" class="form-control form-control-lg form-control-solid" type="email" name="email" id="emaile" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-3 text-lg-right text-left">Asignar Rol</label>
-                                            <div class="col-9">
-                                                <div class="input-group input-group-lg input-group-solid">
-                                                    <select name="role_id" class="form-control form-control-lg form-control-solid">
-                                                        <option value="1">Administrador</option>
-                                                        <option value="2">Usuario</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Group-->
-                                    <div class="modal-footer d-flex justify-content-between border-0">
-                                        <button type="submit" class="btn btn-secondary">Guardar cambios</button>
-                                        <a href="{{route('home')}}" class="btn btn-secondary">Cancelar</a>
-                                    </div>                     
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {!! Form::close() !!}
 
-                <div class="modal-footer d-flex justify-content-between border-0"> <!-- llama al destroy para eliminar el objeto-->             
-                    {!! Form::open(['method' => 'DELETE', 'action'=> [[App\Http\Controllers\webController::class, 'destroy'], $user->id]]) !!}
-                    {{ csrf_field() }}
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="submit" class="btn btn-secondary" value="Eliminar Registro">
-                    <!--</form>-->
-                    {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
+<div class="modal fade" id="editUsuario" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="card-header">{{ __('Dashboard') }}</div>
+                        <form method="POST" action="{{ route('edit_product') }}" enctype="multipart/form-data">
+                         <!--llama al update y le pasa el parametro para actualizar el registro-->
+                            {{ csrf_field()}}
+                            <div class="modal-header border-0">
+                                <div class="form-group">
+                                  <h5 class="color-blue" id="editModalLabel">Editar Usuario</h5>
+                                  <span class="color-muted mt-3 font-weight-bold font-size-sm">Edita el usuario introduciendo sus datos.</span>
+                                </div>
+                              </div>
+                              <div class="modal-body py-0">
+                                <input type="hidden" name="id" id="ide">
+                                  <div class="form-group">
+                                    <label class="font-weight-bolder text-dark">Nombre</label>
+                                    <input class="form-control h-auto py-4 px-4 bg-light-brown" type="text" name="name" id="namee"/>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="font-weight-bolder text-dark">Email Adress</label>
+                                    <input type="text" class="form-control h-auto py-4 px-4 bg-light-brown" type="email" name="email" id="emaile" required>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="font-weight-bolder text-dark">Asignar Rol</label>
+                                    <select name="role_id" id="role_ide" class="form-control select-gray">
+                                        <option value="1">Administrador</option>
+                                        <option value="2">Usuario</option>
+                                    </select>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="font-weight-bolder text-dark">Imagen del Usuario <span class="text-muted">(opcional)</span></label>
+                                    <input class="form-control h-auto py-4 px-4" type="file" accept="image/png, image/jpg, image/jpeg" name="foto_id" id="foto_ide"/>
+                                  </div>
+                                  <div class="form-group">
+                                    <span class="text-muted">Máximo 1 fichero.</span><br>
+                                    <span class="text-muted">Peso máx. 16 MB.</span><br>
+                                    <span class="text-muted">Tipos permitidos: png, jpg, jpeg.</span>
+                                  </div>
+                                </div>
+                                <div class="modal-footer d-flex justify-content-between border-0">
+                                    <button type="button" class="btn btn-brown font-weight-bold" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-blue font-weight-bold">Guardar cambios</button>
+                                </div>
+                        </form>
+      </div>
     </div>
 </div>
-@endsection
-

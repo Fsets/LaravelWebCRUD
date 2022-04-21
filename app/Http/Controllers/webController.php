@@ -28,8 +28,10 @@ class webController extends Controller
     public function index()
     {
         //
-        $users = User::all();
-        return view("home")->with('users', $users); //para enviar datos al blade
+        $user = User::all();
+
+        return view("home")->with('user', $user); //para enviar datos al blade
+        
     }
 
     public function logout(Request $request) {
@@ -92,6 +94,7 @@ class webController extends Controller
         }
 
         $meta['rowids']= $rowIds;
+
         $meta['page'] = $pagination['page'];
         $meta['pages'] = 1;
         if(isset($pagination['pages'])){
@@ -106,15 +109,24 @@ class webController extends Controller
         return response()->json($response);
     }
 
+    public function get_user($id){
+        $user = User::find($id);
+
+        $response['code'] = 1000;
+        $response['user'] = $user;
+        return response()->json($response);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-     */
+     */ 
+    /*
     public function create()
     {
         //
-    }
+    }*/
 
     /**
      * Store a newly created resource in storage.
@@ -122,7 +134,7 @@ class webController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) //lo usa el crear usuario
     {
         $entrada = $request->all(); //almacena en entrada el resultado de toda la consulta que hagamos en la bd
         if($archivo=$request->file('foto_id')){ //si hay imagen
@@ -157,13 +169,40 @@ class webController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
+    /*
     public function edit($id)
     {
         //
         $user = User::findOrFail($id);//Mediante este metodo findorfail hacemos una busqueda del id del usuario que nos llega por parametros de la tabla para ver si dicho usuario existe
         return view('usuario.editUsuario')->with('user', $user);// ridirigimos toda la informacion del usuario a la vista para su posterior edicion
         
+    }
+*/
+
+    public function edit_product(Request $request){
+        $user = User::find($request->id);
+        $entrada = $request->all();
+        
+        if($file = $request->file('foto_id')){
+            $type = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+            $date_aux = date("Y-m-d H:i:s");
+            $date_ms = strtotime($date_aux) * 1000;
+            $name_without_extension = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME).'_'.$date_ms;
+            $name = $name_without_extension.'.'.$type;
+
+            $foto= Foto::create(['ruta_foto'=> $name]);
+            $idfoto = $entrada['foto_id'] = $foto->id;
+        }
+
+        $user->id = $request->id;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role_id = $request->role_id;
+        $user->foto_id = $idfoto;
+        $user->save();  
+
+        $file->move(public_path().'/images', $name);
+        return redirect('home')->with('warning', 'Usuario editado correctamente'); ;
     }
 
     /**
@@ -173,6 +212,7 @@ class webController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /*
     public function update(Request $request, $id)
     {
         //
@@ -187,7 +227,7 @@ class webController extends Controller
         $user->update($entrada); //actualiza la informacion en la bd
 
         return redirect('home')->with('success', 'Usuario Editado correctamente');
-    }
+    }*/
 
     /**
      * Remove the specified resource from storage.
@@ -195,11 +235,24 @@ class webController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     /*
     public function destroy($id)
     {
         //
         $user = User::find($id);
         $user->delete();
         return redirect('home')->with('info', 'Usuario Eliminado correctamente');
+    }*/
+
+    public function delete_user($id){
+        $user = User::find($id);
+        //no borra en la bd sino q borraria el usuario pero permanece en la bd
+        //$product->deleted_at = date("Y-m-d H:i:s");
+        //$product->save();
+        $user->delete();
+
+        $response['code'] = 1000;
+        return response()->json($response)->with('error', 'Usuario eliminado correctamente');
     }
 }

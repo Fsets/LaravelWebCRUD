@@ -19,14 +19,17 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-Route::group(['middleware' => ['auth', 'verified']], function(){
+Route::group(['middleware' => ['auth', 'verified']], function(){ //comprueba si el usuario es admin o no es
     Route::get('home', [App\Http\Controllers\webController::class, 'index'])->name('home');
     Route::resource('usuario', webController::class)->middleware('role:role_id'); //sirve para usarlo en {{route(usuario.vistaquequeremosutilizar)}}
     Route::get('/crear_user', [App\Http\Controllers\webController::class, 'crear_user'])->name('crear_user')->middleware('role:role_id'); //el middleware hace que solo los admins puedan crear usuarios
     Route::post('/newUsuario', [App\Http\Controllers\webController::class, 'newUsuario'])->name('newUsuario');
     Route::get('/logout', [App\Http\Controllers\webController::class, 'logout'])->name('logout');
 
-    Route::post('/list_usuarios', [App\Http\Controllers\webController::class, 'list_usuarios'])->name('list_usuarios');
+    Route::post('/list_usuarios', [App\Http\Controllers\webController::class, 'list_usuarios'])->name('list_usuarios'); //javascript tablejs
+    Route::get('/delete_user/{id}', [App\Http\Controllers\webController::class, 'delete_user'])->name('delete_user');
+    Route::get('/get_user/{id}', [App\Http\Controllers\webController::class, 'get_user'])->name('get_user');
+    Route::post('/edit_product', [App\Http\Controllers\webController::class, 'edit_product'])->name('edit_product');
 });
 
 /*Route::resource('usuario', 'App\Http\Controllers\webController');
