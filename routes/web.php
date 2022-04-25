@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth', 'verified']], function(){ //comprueba si 
     Route::get('/logout', [App\Http\Controllers\webController::class, 'logout'])->name('logout');
 
     Route::post('/list_usuarios', [App\Http\Controllers\webController::class, 'list_usuarios'])->name('list_usuarios'); //javascript tablejs
-    Route::get('/delete_user/{id}', [App\Http\Controllers\webController::class, 'delete_user'])->name('delete_user');
+    Route::get('/delete_user/{id}', [App\Http\Controllers\webController::class, 'delete_user'])->name('delete_user')->middleware('role:role_id');
     Route::get('/get_user/{id}', [App\Http\Controllers\webController::class, 'get_user'])->name('get_user');
     Route::post('/edit_product', [App\Http\Controllers\webController::class, 'edit_product'])->name('edit_product')->middleware('role:role_id');
 });
