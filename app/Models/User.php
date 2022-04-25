@@ -66,12 +66,12 @@ class User extends Authenticatable
     }
     public function getFotoUser($id){
         $user = User::find($id);
-        return $user->foto->ruta_foto;
+        return $user->foto_id;
     }
 
     public function hasFotoUser($id){
         $user =User::find($id);
-        return $user->foto;
+        return $user->foto_id;
     }
 
     public function getFirstLetterName($id){

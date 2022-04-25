@@ -105,7 +105,7 @@ function listaUsers() {
                 sortable: !1,
                 autoHide: false,
                 template: function(row, data, index) {
-                    return '<img src="' + url_upload_img + '/' + row.img + '" width="50px" height="auto">';
+                    return '<img src="' + url_upload_img + '/' + row.foto_id + '" width="50px" height="auto">';
                 },
             },
             {

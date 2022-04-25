@@ -136,18 +136,32 @@ class webController extends Controller
      */
     public function store(Request $request) //lo usa el crear usuario
     {
-        $entrada = $request->all(); //almacena en entrada el resultado de toda la consulta que hagamos en la bd
-        if($archivo=$request->file('foto_id')){ //si hay imagen
-            $nombre= $archivo->getClientOriginalName(); 
-            $archivo->move('images', $nombre);
-            $foto= Foto::create(['ruta_foto'=> $nombre]);
-            $entrada['foto_id'] = $foto->id;
+        $file = $request->file('foto_id');
+        if($file){
+            $name = $file->getClientOriginalName();
+            $user = User::create([
+                'id' => $request->id,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' =>bcrypt($request->password),
+                'foto_id' => $name,
+                'role_id' => $request->role_id
+            ]);
+            $user->save();  
+    
+            $file->move(public_path().'/images', $name);
+            return redirect('home')->with('success', 'Usuario creado correctamente'); //redirecciona a esa pagina
+        }else{
+            $user = User::create([
+                'id' => $request->id,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' =>bcrypt($request->password),
+                'role_id' => $request->role_id
+            ]);
+            $user->save();
+            return redirect("home")->with('error', 'Falta añadir una imagen');
         }
-        //encriptar la contraseña
-        $entrada['password']= bcrypt($request->password);
-        User::create($entrada); //crea el objeto usuario
-        
-        return redirect('home')->with('success', 'Usuario creado correctamente'); //redirecciona a esa pagina
     }
 
     /**
@@ -181,28 +195,28 @@ class webController extends Controller
 
     public function edit_product(Request $request){
         $user = User::find($request->id);
-        $entrada = $request->all();
-        
-        if($file = $request->file('foto_id')){
-            $type = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
-            $date_aux = date("Y-m-d H:i:s");
-            $date_ms = strtotime($date_aux) * 1000;
-            $name_without_extension = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME).'_'.$date_ms;
-            $name = $name_without_extension.'.'.$type;
 
-            $foto= Foto::create(['ruta_foto'=> $name]);
-            $idfoto = $entrada['foto_id'] = $foto->id;
+        $file = $request->file('foto_id');
+        if($file){
+            $name = $file->getClientOriginalName();
+            $user->id = $request->id;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->role_id = $request->role_id;
+            $user->foto_id = $name;
+            $user->save();  
+
+            $file->move(public_path().'/images', $name);
+            return redirect('home')->with('warning', 'Usuario editado correctamente');
+        }else{
+            $user->id = $request->id;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->role_id = $request->role_id;
+            $user->save(); 
+
+            return redirect("home")->with('error', 'Falta añadir una imagen');
         }
-
-        $user->id = $request->id;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->role_id = $request->role_id;
-        $user->foto_id = $idfoto;
-        $user->save();  
-
-        $file->move(public_path().'/images', $name);
-        return redirect('home')->with('warning', 'Usuario editado correctamente'); ;
     }
 
     /**
@@ -213,6 +227,7 @@ class webController extends Controller
      * @return \Illuminate\Http\Response
      */
     /*
+
     public function update(Request $request, $id)
     {
         //
@@ -251,8 +266,7 @@ class webController extends Controller
         //$product->deleted_at = date("Y-m-d H:i:s");
         //$product->save();
         $user->delete();
-
         $response['code'] = 1000;
-        return response()->json($response)->with('error', 'Usuario eliminado correctamente');
+        return response()->json($response);
     }
 }
