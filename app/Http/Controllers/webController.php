@@ -46,16 +46,6 @@ class webController extends Controller
         return view("usuario.crearUsuario")->with('user', $user);
     }
 
-    public function newUsuario(Request $request){
-        $user = User::create([
-            'id' => $request->id,
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' =>bcrypt($request->password)
-        ]);
-        return redirect('home');
-    }
-
     public function list_usuarios(Request $request){ //lo llama desde el web.php -> home.blade
         //para mostrar las paginas
         //Elementos para la paginación 
