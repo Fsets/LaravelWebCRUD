@@ -26,7 +26,6 @@ $(document).ready(function() {
         var id = $(this).data('id');
         getUser(id);
     });
-
 });
 
 function listaUsers() {
