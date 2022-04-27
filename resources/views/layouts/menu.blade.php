@@ -39,6 +39,7 @@
                     @endif
                 </a>
             </li>
+            @if(Auth::user()->role_id == 1) <!-- si el usuario es admin entonces puede ver esta pestaña-->
             <li class="menu-item {{ Request::is('crear_user*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                 <a href="{!! route('crear_user') !!}" class="menu-link">
                     @if(Request::is('crear_user*')) <!--si el menu esta seleccionado entonces cambia color-->
@@ -50,6 +51,62 @@
                     @endif
                 </a>
             </li>
+            @endif
+            @if(Auth::user()->role_id == 1) <!-- si el usuario es admin entonces puede ver esta pestaña-->
+                <li class="menu-item {{ Request::is('index_producto*') ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="{!! route('index_producto') !!}"  class="menu-link menu-toggle">
+                        @if(Request::is('index_producto*')) <!--si el menu esta seleccionado entonces cambia color-->
+                        <span class="svg-icon menu-icon"><img src="{{url('assets/media/custom_identya/menu-productos-blanco.svg')}}" width="20px" height="auto"></span>
+                        <span class="menu-text text-white">Productos</span>
+                        @else
+                        <span class="svg-icon menu-icon"><img src="{{url('assets/media/custom_identya/menu-productos-azul.svg')}}" width="20px" height="auto"></span>
+                        <span class="menu-text text-color-purple-blue">Productos</span>
+                        @endif
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="menu-submenu">
+                        <i class="menu-arrow"></i>
+                        <ul class="menu-subnav">
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{!! route('index_producto') !!}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="menu-text ">Tabla Productos</span>
+                                </a>
+                            </li>
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{!! route('crear_producto') !!}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="menu-text ">Añadir Nuevo Producto</span>
+                                </a>
+                            </li>
+                            <li class="menu-item" aria-haspopup="true">
+                                <a href="{!! route('view_producto') !!}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="menu-text ">Ver Productos</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                @else
+                <li class="menu-item {{ Request::is('index_producto*') ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="{!! route('index_producto') !!}"  class="menu-link menu-toggle">
+                        @if(Request::is('index_producto*')) <!--si el menu esta seleccionado entonces cambia color-->
+                        <span class="svg-icon menu-icon"><img src="{{url('assets/media/custom_identya/menu-productos-blanco.svg')}}" width="20px" height="auto"></span>
+                        <span class="menu-text text-white">Productos</span>
+                        @else
+                        <span class="svg-icon menu-icon"><img src="{{url('assets/media/custom_identya/menu-productos-azul.svg')}}" width="20px" height="auto"></span>
+                        <span class="menu-text text-color-purple-blue">Productos</span>
+                        @endif
+                    </a>
+                </li>
+                @endif
         </ul>
         <!--end::Menu Nav-->
     </div>
