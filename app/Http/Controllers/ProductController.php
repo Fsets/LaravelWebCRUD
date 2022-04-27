@@ -39,8 +39,8 @@ class ProductController extends Controller
     public function crear_producto()
     {
         //
-        $producto = Producto::all();
-        return view("producto.crearProducto")->with("producto", $producto);
+        $productos = Producto::all();
+        return view("producto.crearProducto")->with("productos", $productos);
     }
     /**
      * Show the form for creating a new resource.

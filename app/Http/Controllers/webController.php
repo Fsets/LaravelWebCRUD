@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Producto;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Foto;
 use App\Http\Requests\RegisterRequest;
@@ -31,8 +32,9 @@ class webController extends Controller
         //
         $role = Role::all();
         $user = User::all();
+        $productos = Producto::all();
 
-        return view("home")->with('user', $user)->with('role', $role); //para enviar datos al blade
+        return view("home")->with('user', $user)->with('role', $role)->with("productos", $productos); //para enviar datos al blade
         
     }
 
@@ -45,8 +47,9 @@ class webController extends Controller
     {
         //
         $role = Role::all();
+        $productos = Producto::all();
         $user = User::all();
-        return view("usuario.crearUsuario")->with('user', $user)->with('role', $role);
+        return view("usuario.crearUsuario")->with('user', $user)->with('role', $role)->with("productos", $productos);
     }
 
     //vista admin

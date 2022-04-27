@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <div class="d-flex flex-column-fluid">
         <div class="container">
@@ -16,13 +17,11 @@
                             <div class="d-flex align-items-end mb-7">
                                 <!--begin::Pic-->
                                 <div class="d-flex align-items-center mb-7">
-
                                     <!--begin::Pic-->
                                     <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
                                         <div class="symbol symbol-50 symbol-lg-100">
                                             <img src="assets/media/products/{{$producto->img}}" >
                                         </div>
-
                                     </div>
                                     <!--end::Pic-->
 
@@ -47,7 +46,7 @@
                             <div class="mb-7">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="text-dark-75 font-weight-bolder mr-2">Precio:</span>
-                                    <span class="text-muted font-weight-bold">{{$producto->precio}}</span>
+                                    <span class="text-muted font-weight-bold">{{$producto->precio}} €</span>
                                 </div>
                             </div>
                             <!--end::Info-->

@@ -12,6 +12,7 @@
     </div>
 </div>
 
+<!-- menu usuario-->
 <div id="kt_quick_user" class="offcanvas offcanvas-right p-10 offcanvas-off"> <!-- para dejar cerrado el menu derecha (off)-->
     <!--begin::Header-->
     <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5" kt-hidden-height="40" style="">
@@ -66,5 +67,69 @@
         </div>
         <!--end::Notifications-->
     <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 863px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 300px;"></div></div></div>
+    <!--end::Content-->
+</div>
+
+<!-- menu carrito compra-->
+<div id="kt_quick_cart" class="offcanvas offcanvas-right p-10 offcanvas-off">
+    <!--begin::Header-->
+    <div class="offcanvas-header d-flex align-items-center justify-content-between pb-7" kt-hidden-height="46" style="">
+        <h4 class="font-weight-bold m-0">Shopping Cart</h4>
+        <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_cart_close">
+            <i class="ki ki-close icon-xs text-muted"></i>
+        </a>
+    </div>
+    <!--end::Header-->
+
+    <!--begin::Content-->
+    <div class="offcanvas-content">
+        <!--begin::Wrapper-->
+        <div class="offcanvas-wrapper mb-5 scroll-pull scroll ps ps--active-y" style="height: 240px; overflow: hidden;">
+            <!--begin::Item-->
+            @foreach($productos as $producto)
+            <div class="d-flex align-items-center justify-content-between py-8">
+                <div class="d-flex flex-column mr-2">
+                    <a href="#" class="font-weight-bold text-dark-75 font-size-lg text-hover-primary">{{$producto->titulo}}</a>
+                    <div class="d-flex align-items-center mt-2">
+                        <span class="font-weight-bold mr-1 text-dark-75 font-size-lg">{{$producto->precio}}€</span>
+                        <span class="text-muted mr-1">for</span>
+                        <span class="font-weight-bold mr-2 text-dark-75 font-size-lg">5</span>
+                        <a href="#" class="btn btn-xs btn-light-success btn-icon mr-2">
+                            <i class="ki ki-minus icon-xs"></i>
+                        </a>
+                        <a href="#" class="btn btn-xs btn-light-success btn-icon">
+                            <i class="ki ki-plus icon-xs"></i>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="symbol symbol-70 flex-shrink-0">
+                    <img src="assets/media/products/{{$producto->img}}" title="" alt="">
+                </a>
+            </div>
+            @endforeach
+            <!--end::Item-->
+            <!--begin::Separator-->
+            <div class="separator separator-solid"></div>
+            <!--end::Separator-->
+
+
+        <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: -2px; height: 240px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 90px;"></div></div></div>
+        <!--end::Wrapper-->
+        <!--begin::Purchase-->
+        <div class="offcanvas-footer" kt-hidden-height="113" style="">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <span class="font-weight-bold text-muted font-size-sm mr-2">Total</span>
+                <span class="font-weight-bolder text-dark-50 text-right">$1840.00</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-between mb-7">
+                <span class="font-weight-bold text-muted font-size-sm mr-2">Sub total</span>
+                <span class="font-weight-bolder text-primary text-right">$5640.00</span>
+            </div>
+            <div class="text-right">
+                <button type="button" class="btn btn-primary text-weight-bold">Place Order</button>
+            </div>
+        </div>
+        <!--end::Purchase-->
+    </div>
     <!--end::Content-->
 </div>
