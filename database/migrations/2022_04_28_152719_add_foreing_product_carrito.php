@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('productos', function (Blueprint $table) {
-            $table->id();
-            $table->string('titulo');
-            $table->double('precio');
-            $table->longText('descripcion');
-            $table->string('img');
-            $table->integer('cantidad');
-            $table->timestamps();
+        Schema::table('carritos', function (Blueprint $table) {
+            //
+            //el idProd de la tabla carritos hace referencia al id.productos, y si se actualiza a otro nombre se actualiza on cascade
+            $table->foreign('idProd')->references('id')->on('productos')->onUpdate('cascade');
         });
     }
 
@@ -31,6 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('productos');
+        Schema::table('carritos', function (Blueprint $table) {
+            //
+        });
     }
 };

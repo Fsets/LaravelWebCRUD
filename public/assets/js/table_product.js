@@ -98,6 +98,12 @@ function listaProductos() {
                 textAlign: "center",
             },
             {
+                field: "cantidad",
+                title: "Cantidad",
+                sortable: !1,
+                textAlign: "center",
+            },
+            {
                 field: "img",
                 title: 'Imagen',
                 textAlign: "center",
@@ -163,9 +169,9 @@ function getProduct(id) {
         success: function(response) {
             if (response.code == 1000) {
                 var producto = response.producto;
+                //para quitar el autorrelleno
                 $('#ide').val(producto.id);
                 $('#tituloe').val(producto.titulo);
-                $('#precioe').val(producto.precio);
                 $('#descriptione').val(producto.description);
 
                 $('#editProducto').modal('show'); //si no aparece al pulsar el bt es q no tenemos bn metido el html

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use App\Models\Carrito;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -29,11 +30,29 @@ class ProductController extends Controller
         return view("producto.tablaProductos")->with("productos", $productos);
     }
 
-    public function view_producto()
+    public function view_producto() 
     {
         //
         $productos = Producto::all();
-        return view("producto.viewProducto")->with("productos", $productos);
+        //modificamos el id por id carrito para que no se solapen los ids y hacemos un leftJoin nombretabla, nombrecelda = , nombre celda de la tabla que queremos conectar
+        $carrito = Carrito::select("carritos.id as idCarrito", "productos.*")->leftJoin("productos", "productos.id", "=", "carritos.idProd")->get();
+
+        $totalCompra=0;
+        foreach($carrito as $prod){
+             $totalCompra = $prod->precio + $totalCompra;
+        }
+
+        /*esto hacerlo en otro metodo yo creo
+        $cantidadCarrito = 0;
+        if($carrito->cantidad > 1){
+            $cantidadCarrito= $carrito->cantidad;
+
+        }else{
+            $cantidadCarrito=0;
+            $totalCompra=0;
+        }*/
+
+        return view("producto.viewProducto")->with("productos", $productos)->with("carrito", $carrito)->with("totalCompra", $totalCompra);
     }   
 
     public function crear_producto()
@@ -125,6 +144,7 @@ class ProductController extends Controller
                 'id' => $request->id,
                 'titulo' => $request->titulo,
                 'precio' => $request->precio,
+                'cantidad' => $request->cantidad,
                 'descripcion' =>$request->descripcion,
                 'img' => $name,
             ]);
@@ -138,6 +158,7 @@ class ProductController extends Controller
                 'id' => $request->id,
                 'titulo' => $request->titulo,
                 'precio' => $request->precio,
+                'cantidad' => $request->cantidad,
                 'descripcion' =>$request->descripcion,
             ]);
             $producto->save();
@@ -174,6 +195,7 @@ class ProductController extends Controller
             $producto->id = $request->id;
             $producto->titulo = $request->titulo;
             $producto->precio = $request->precio;
+            $producto->cantidad = $request->cantidad;
             $producto->descripcion = $request->descripcion;
             $producto->img = $name;
             $producto->save();  
@@ -184,6 +206,7 @@ class ProductController extends Controller
             $producto->id = $request->id;
             $producto->titulo = $request->titulo;
             $producto->precio = $request->precio;
+            $producto->cantidad = $request->cantidad;
             $producto->descripcion = $request->descripcion;
             $producto->save();
 

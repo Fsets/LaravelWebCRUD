@@ -44,5 +44,8 @@ Route::group(['middleware' => ['auth', 'verified']], function(){ //comprueba si 
     Route::post('/new_product', [App\Http\Controllers\ProductController::class, 'new_product'])->name('new_product')->middleware('role:role_id');
     Route::post('/list_productos', [App\Http\Controllers\ProductController::class, 'list_productos'])->name('list_productos'); //javascript tablejs
 
+    Route::get('/buy_product/{id}', [App\Http\Controllers\CarritoController::class, 'buy_product'])->name('buy_product');
+
+    Route::post('/add_product', [App\Http\Controllers\CarritoController::class, 'add_product'])->name('add_product');
 });
 

@@ -29,6 +29,10 @@
                           <input class="form-control h-auto py-4 px-4 bg-light-brown" type="text" name="precio" required/>
                         </div>
                         <div class="form-group">
+                          <label class="font-weight-bolder text-dark">Cantidad</label>
+                          <input class="form-control h-auto py-4 px-4 bg-light-brown" type="text" name="cantidad" required/>
+                        </div>
+                        <div class="form-group">
                           <label class="font-weight-bolder text-dark">Descripcion</label>
                           <textarea class="form-control h-auto py-4 px-4 bg-light-brown" rows="5" cols="40" type="text" name="descripcion"></textarea>
                         </div>
@@ -42,4 +46,5 @@
         </div>
     </div>
 </div>
+
 @endsection

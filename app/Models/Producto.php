@@ -12,7 +12,12 @@ class Producto extends Model
     protected $fillable = [
         'titulo',
         'precio',
+        'cantidad',
         'descripcion',
         'img',
     ];
+    
+    public function user(){
+        return $this->belongsToMany(User::class);
+    }
 }

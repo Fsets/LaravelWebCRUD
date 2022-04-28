@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carrito;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Producto;
@@ -33,8 +34,8 @@ class webController extends Controller
         $role = Role::all();
         $user = User::all();
         $productos = Producto::all();
-
-        return view("home")->with('user', $user)->with('role', $role)->with("productos", $productos); //para enviar datos al blade
+        $carrito = Carrito::all();
+        return view("home")->with('user', $user)->with('role', $role)->with("productos", $productos)->with("carrito", $carrito); //para enviar datos al blade
         
     }
 

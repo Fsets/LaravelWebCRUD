@@ -56,6 +56,14 @@ class User extends Authenticatable
         return $this->belongsTo(Foto::class);
     }
 
+    public function carrito(){
+        return $this->belongsTo(Carrito::class);
+    }
+
+    public function productos(){
+        return $this->belongsToMany(Producto::class);
+    }
+
     public function getNameUser($id){
         $user = User::find($id);
         return $user->name;
@@ -65,6 +73,7 @@ class User extends Authenticatable
         $user = User::find($id);
         return $user->email;
     }
+
     public function getFotoUser($id){
         $user = User::find($id);
         return $user->foto_id;

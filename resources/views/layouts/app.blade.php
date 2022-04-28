@@ -59,6 +59,7 @@
             <div class="d-flex flex-column flex-column-fluid" id="kt_content">
 				@include('layouts.subheader')<!-- incluye la subcabecera-->
 				@include('flash_message')
+				
 				<div class="content d-flex flex-column-fluid">
 					@yield('content')<!-- llama al contenido de home.blade.php-->
 				</div>
