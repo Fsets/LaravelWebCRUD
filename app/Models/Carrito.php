@@ -13,7 +13,7 @@ class Carrito extends Model
         'id',
         'idProd',
         'idUser',
-        'cantidad',
+        'cantidad_prod',
         'total',
     ];
 

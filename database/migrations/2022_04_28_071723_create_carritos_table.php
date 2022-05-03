@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('idProd');
             $table->integer('idUser');
-            $table->integer('cantidad');
+            $table->integer('cantidad_prod');
             $table->double('total');
             $table->string('img');
             $table->timestamps();

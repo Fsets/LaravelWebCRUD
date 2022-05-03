@@ -16,6 +16,10 @@
                             <form method="POST" action="{{ route('add_product') }}" enctype="multipart/form-data"> <!-- llama al store para guardar la info en la bd-->
                                 {{ csrf_field() }}
                                 <input type="hidden" value="{{ $producto->id }}" id="idp" name="idp">
+                                @foreach($items as $item)
+                                <input type="hidden" value="1" id="cantidad_prod" name="cantidad_prod">
+                                @endforeach
+
                             <!--begin::User-->
                             <div class="d-flex align-items-end mb-7">
                                 <!--begin::Pic-->
@@ -91,14 +95,14 @@
         <div class="offcanvas-wrapper mb-5 scroll-pull scroll ps ps--active-y" style="height: 240px; overflow: hidden;">
             <!--begin::Item-->
             
-            @foreach($carrito as $item)
+            @foreach($items as $item)
             <div class="d-flex align-items-center justify-content-between py-8">
                 <div class="d-flex flex-column mr-2">
                     <a href="#" class="font-weight-bold text-dark-75 font-size-lg text-hover-primary">{{$item->titulo}}</a>
                     <div class="d-flex align-items-center mt-2">
                         <span class="font-weight-bold mr-1 text-dark-75 font-size-lg">{{$item->precio}}€</span>
                         <span class="text-muted mr-1">for</span>
-                        <span class="font-weight-bold mr-2 text-dark-75 font-size-lg">{{$item->cantidad}}</span>
+                        <span class="font-weight-bold mr-2 text-dark-75 font-size-lg"> {{$item->cantidad_prod}} </span>
                         <a href="#" class="btn btn-xs btn-light-success btn-icon mr-2">
                             <i class="ki ki-minus icon-xs"></i>
                         </a>
@@ -126,7 +130,7 @@
                 <span class="font-weight-bolder text-dark-50 text-right">{{$totalCompra}}€</span>
             </div>  
             <div class="text-right">
-                <button type="button" class="btn btn-primary text-weight-bold">Place Order</button>
+                <a href="{{route('comprar_orden')}}" class="btn btn-primary text-weight-bold">Place Order</a>
             </div>
         </div>
         <!--end::Purchase-->

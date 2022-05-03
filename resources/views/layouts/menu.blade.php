@@ -95,9 +95,9 @@
                     </div>
                 </li>
                 @else
-                <li class="menu-item {{ Request::is('index_producto*') ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
-                    <a href="{!! route('index_producto') !!}"  class="menu-link menu-toggle">
-                        @if(Request::is('index_producto*')) <!--si el menu esta seleccionado entonces cambia color-->
+                <li class="menu-item {{ Request::is('view_producto*') ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="{!! route('view_producto') !!}"  class="menu-link menu-toggle">
+                        @if(Request::is('view_producto*')) <!--si el menu esta seleccionado entonces cambia color-->
                         <span class="svg-icon menu-icon"><img src="{{url('assets/media/custom_identya/menu-productos-blanco.svg')}}" width="20px" height="auto"></span>
                         <span class="menu-text text-white">Productos</span>
                         @else

@@ -19,9 +19,12 @@ class CarritoController extends Controller
     public function index()
     {
         //
-        $productos = Producto::all();
-        $carrito = Carrito::all();
-        return view("producto.comprarProducto")->with("productos", $productos)->with("carrito", $carrito);
+        $items = Carrito::select("carritos.id as idCarrito","carritos.*", "productos.*")->join('productos', 'productos.id', '=', 'carritos.idProd')->get();
+        $totalCompra=0;
+        foreach($items as $prod){
+             $totalCompra = $prod->precio + $totalCompra;
+        }
+        return view("producto.comprarProducto")->with("items", $items)->with("totalCompra", $totalCompra);
     }
 
     public function buy_product(Request $request, $id)
@@ -39,16 +42,17 @@ class CarritoController extends Controller
      */
     public function add_product(Request $request) //agrega al carrito
     {
-
+        
             $carrito = Carrito::create([
                 'id' => $request->id,
                 'idProd' => $request->idp,
                 'idUser' => auth()->user()->id,
-                'cantidad' => 1,
+                'cantidad_prod' => $request->cantidad_prod + 1,
                 'total' =>$request->precio,
             ]);
+
             $carrito->save();
-            return redirect("view_producto")->with('success', 'Item Agregado a sú Carrito!');
+            return redirect("view_producto")->with('success', 'Item Agregado a su Carrito!');
     }
 
     /**
@@ -102,8 +106,11 @@ class CarritoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete_carrito($id)
     {
         //
+        $item = Carrito::find($id);
+        $item->delete();
+        return redirect("view_producto");
     }
 }

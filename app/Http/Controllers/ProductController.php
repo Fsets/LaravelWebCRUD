@@ -33,28 +33,21 @@ class ProductController extends Controller
     public function view_producto() 
     {
         //
-        $productos = Producto::all();
-        //modificamos el id por id carrito para que no se solapen los ids y hacemos un leftJoin nombretabla, nombrecelda = , nombre celda de la tabla que queremos conectar
-        $carrito = Carrito::select("carritos.id as idCarrito", "productos.*")->leftJoin("productos", "productos.id", "=", "carritos.idProd")->get();
+        $productos = Producto::all();    
+        //juntamos las dos tablas para poder sacar los datos de dentro
+        $items = Carrito::select("carritos.id as idCarrito","carritos.*", "productos.*")->join('productos', 'productos.id', '=', 'carritos.idProd')->get();
 
         $totalCompra=0;
-        foreach($carrito as $prod){
+        foreach($items as $prod){
              $totalCompra = $prod->precio + $totalCompra;
         }
 
-        /*esto hacerlo en otro metodo yo creo
-        $cantidadCarrito = 0;
-        if($carrito->cantidad > 1){
-            $cantidadCarrito= $carrito->cantidad;
+        
 
-        }else{
-            $cantidadCarrito=0;
-            $totalCompra=0;
-        }*/
-
-        return view("producto.viewProducto")->with("productos", $productos)->with("carrito", $carrito)->with("totalCompra", $totalCompra);
+        return view("producto.viewProducto")->with("productos", $productos)->with("totalCompra", $totalCompra)->with("items", $items);
     }   
-
+    
+    
     public function crear_producto()
     {
         //
