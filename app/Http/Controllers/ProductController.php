@@ -39,10 +39,8 @@ class ProductController extends Controller
 
         $totalCompra=0;
         foreach($items as $prod){
-             $totalCompra = $prod->precio + $totalCompra;
+             $totalCompra = $prod->total + $totalCompra;
         }
-
-        
 
         return view("producto.viewProducto")->with("productos", $productos)->with("totalCompra", $totalCompra)->with("items", $items);
     }   

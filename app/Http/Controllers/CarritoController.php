@@ -22,7 +22,7 @@ class CarritoController extends Controller
         $items = Carrito::select("carritos.id as idCarrito","carritos.*", "productos.*")->join('productos', 'productos.id', '=', 'carritos.idProd')->get();
         $totalCompra=0;
         foreach($items as $prod){
-             $totalCompra = $prod->precio + $totalCompra;
+             $totalCompra = $prod->total + $totalCompra;
         }
         return view("producto.comprarProducto")->with("items", $items)->with("totalCompra", $totalCompra);
     }
@@ -40,19 +40,41 @@ class CarritoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function add_product(Request $request) //agrega al carrito
-    {
-        
+    public function add_prod(Request $request, $id){
+        $carrito = Carrito::find($id);
+        $producto = Producto::find($id);
+
+        if(!$carrito){
             $carrito = Carrito::create([
                 'id' => $request->id,
                 'idProd' => $request->idp,
                 'idUser' => auth()->user()->id,
-                'cantidad_prod' => $request->cantidad_prod + 1,
+                'cantidad_prod' => $request->cantidad_prod,
                 'total' =>$request->precio,
             ]);
-
+        }else{
+            $carrito->id = $request->id;
+            $carrito->idProd = $request->idp;
+            $carrito->idUser = auth()->user()->id;
+            $carrito->cantidad_prod = $carrito->cantidad_prod + $request->cantidad_prod;
+            $carrito->total = $producto->precio * $carrito->cantidad_prod; 
             $carrito->save();
-            return redirect("view_producto")->with('success', 'Item Agregado a su Carrito!');
+        }
+        return redirect("view_producto")->with('success', 'Item Agregado a su Carrito!');
+    }
+
+    public function minus_prod(Request $request, $id){
+        $carrito = Carrito::find($id);
+        $producto = Producto::find($id);
+
+        if($carrito->cantidad_prod >= 1){
+            $carrito->cantidad_prod = $carrito->cantidad_prod - 1;
+            $carrito->total = $producto->precio * $carrito->cantidad_prod;
+            $carrito->save();
+        }elseif($carrito->cantidad_prod == 0){
+            $carrito->delete();
+        }
+        return redirect("view_producto");
     }
 
     /**
