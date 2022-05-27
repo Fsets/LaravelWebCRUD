@@ -22,7 +22,7 @@ class EmailController extends Controller
         ];
         //3 parametros 1 documento que le da formato a ese correo electronico(una view), 2 el array, 3 funcion que recibe una variable que especifica a quien va el correo
         Mail::send("email.emailView",$datos, function($mensaje){
-            $mensaje->to("andreizaharia41@gmail.com", "Andrey")-> subject("Asunto del Mensaje"); //destinatario
+            $mensaje->to("andreizaharia41@gmail.com", "Andrey")-> subject("Asunto del asdadsdMensaje"); //destinatario
         });
 
         return redirect("view_producto")->with('success', 'Orden realizada revisa su Correo electronico');

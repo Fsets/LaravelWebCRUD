@@ -16,8 +16,7 @@ class CarritoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         //
         $items = Carrito::select("carritos.id as idCarrito","carritos.*", "productos.*")->join('productos', 'productos.id', '=', 'carritos.idProd')->get();
         $totalCompra=0;
