@@ -47,9 +47,8 @@ Route::group(['middleware' => ['auth', 'verified']], function(){ //comprueba si 
     Route::get('/buy_product/{id}', [App\Http\Controllers\CarritoController::class, 'buy_product'])->name('buy_product');
     Route::get('/delete_carrito/{id}', [App\Http\Controllers\CarritoController::class, 'delete_carrito'])->name('delete_carrito');
     Route::get('/comprar_orden', [App\Http\Controllers\CarritoController::class, 'index'])->name('comprar_orden');
-    Route::get('/minus_prod/{id}', [App\Http\Controllers\CarritoController::class, 'minus_prod'])->name('minus_prod');
 
-    Route::post('/add_prod/{id}', [App\Http\Controllers\CarritoController::class, 'add_prod'])->name('add_prod'); 
+    Route::post('/add_product', [App\Http\Controllers\CarritoController::class, 'add_product'])->name('add_product');
 
     Route::get('/mandar_mail', [App\Http\Controllers\EmailController::class, 'mandar_mail'])->name('mandar_mail');
 });

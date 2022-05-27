@@ -47,12 +47,12 @@
                             <a href="javascript:;" class="btn btn-xs btn-light-success btn-icon mr-2">
                                 <i class="ki ki-minus icon-xs"></i>
                             </a>
-                            <span class="mr-2 font-weight-bolder">{{$item->cantidad_prod}}</span>
+                            <span class="mr-2 font-weight-bolder">1</span>
                             <a href="javascript:;" class="btn btn-xs btn-light-success btn-icon">
                                 <i class="ki ki-plus icon-xs"></i>
                             </a>
                         </td>
-                        <td class="text-right align-middle font-weight-bolder font-size-h5">{{$item->total}}€</td>
+                        <td class="text-right align-middle font-weight-bolder font-size-h5">{{$item->precio}}€</td>
                         <td class="text-right align-middle">
                             <a href="{{ route('delete_carrito', $item->idCarrito) }}" class="btn btn-danger font-weight-bolder font-size-sm">Eliminar</a>
                         </td>
