@@ -5,7 +5,7 @@
             <!--begin::Heading-->
             <div class="d-flex justify-content-between align-items-center mb-7">
                 <h2 class="font-weight-bolder text-dark font-size-h3 mb-0">Mejores Productos</h2>
-                <a href="#" class="btn btn-light-primary btn-sm font-weight-bolder">View All</a>
+                <a href="{!! route('view_producto') !!}" class="btn btn-light-primary btn-sm font-weight-bolder">View All</a>
             </div>
             <!--end::Heading-->
             <!--begin::Products-->
@@ -21,7 +21,8 @@
                                     <img src="/assets/media/products/huawei.jpg" alt="" class="mw-100 w-200px">
                                 </div>
                                 <div class="overlay-layer">
-                                    <a href="#" class="btn font-weight-bolder btn-sm btn-primary mr-2">Quick View</a>
+                                    <button type="button" id="bt1" onclick="vermodal()" class="btn font-weight-bolder btn-sm btn-primary mr-2" data-bs-toggle="modal" data-bs-target="#modal_ver_producto"> Quick View2 </button>
+                                    @yield('modal_detalles')
                                     <a href="#" class="btn font-weight-bolder btn-sm btn-light-primary">Purchase</a>
                                 </div>
                             </div>
@@ -287,3 +288,11 @@
         <!--end::Section-->
     </div>
 </div>
+
+@section('scripts')
+<script>
+
+</script>
+
+
+@endsection
