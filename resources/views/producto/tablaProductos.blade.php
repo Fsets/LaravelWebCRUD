@@ -4,7 +4,7 @@
 @if(Auth::user()->role_id == 1) <!-- si el usuario es admin entonces puede ver esta pestaña-->
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+
                 <div class="col-md-12 pl-0">
                     <div class="card card-custom">
                         <div class="card-body">
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 </div>
-        </div>
+                
     </div>
 </div>
 
