@@ -30,8 +30,8 @@ body {
 }
 
 .bg-light-green {
-    border: 1px solid #EBFFFB!important;
-    background-color: #EBFFFB!important;
+    border-left: 5px solid #1884f0!important;
+    background-color: #f3f6f9!important;
 }
 
 .pt-15 {
@@ -40,15 +40,15 @@ body {
 
 .btn-login {
     color: #fff;
-    background-color: #13678A !important;
-    border-color: #13678A !important;
+    background-color: #3699FF !important;
+    border-color: #3699FF !important;
 }
 
 .btn-login-light,
 .btn-login-light:hover {
-    color: #012030 !important;
-    background-color: #9AEBA3 !important;
-    border-color: #9AEBA3 !important;
+    color: #3699FF !important;
+    background-color: #e1f0ff !important;
+    border-color: #e1f0ff !important;
 }
 
 .abcRioButton.abcRioButtonLightBlue {
@@ -89,7 +89,7 @@ a.enlaces:hover {
 }
 
 .bg-login {
-    background-image: url(../media/bg/nft-my-ticket-login-design-backoffice-fondo.jpg);
+    background-image: url(../media/bg/bg-5.jpg);
     background-repeat: no-repeat;
     background-position: right bottom;
     background-size: cover;
