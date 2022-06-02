@@ -34,8 +34,8 @@
 		<!--begin::Header Mobile-->
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 			<!--begin::Logo-->
-			<a href="/">
-				<img style="width: 50px;" alt="identya" src="{{url('assets/media/custom_identya/identya-logotipo-negativo.svg')}}" />
+			<a href="{{ route('home') }}">
+				<img style="width: 50px;" alt="identya" src="{{url('assets/media/custom_identya/identya-logotipo-negativo.svg')}}"/>
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
@@ -57,7 +57,7 @@
                 @include('layouts.header')<!--incluye la cabecera-->
             </div>
             <div class="d-flex flex-column flex-column-fluid" id="kt_content">
-				@if(Request::is('home*')) <!--si el menu esta seleccionado entonces cambia color-->
+				@if(Request::is('home*')) <!--si la peticion es home entonces incluye el subheader-->
 				@include('layouts.subheader')<!-- incluye la subcabecera-->
 				@endif
 
