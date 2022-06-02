@@ -1,8 +1,17 @@
 <div class="container-fluid d-flex align-items-stretch justify-content-between">
-    <div></div>
+    <div>
+        
+    </div>
     <div class="topbar">
         <!--begin::User-->
         <div class="topbar-item">
+            @if(Request::is('view_producto*'))
+                    <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1" id="kt_quick_cart_toggle">
+                        <a href="#" class="btn font-weight-bold mr-2">
+                            <i class="icon-2x text-dark-50 flaticon2-shopping-cart-1"></i>
+                        </a>
+                    </div>
+                @endif
             <div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
                 <span class="color-blue font-weight-bold font-size-base d-none d-md-inline mr-1">Hola</span>
                 <span class="color-blue font-weight-bolder font-size-base d-none d-md-inline mr-3">{{Auth::user()->getNameUser(Auth::user()->id)}}</span>
