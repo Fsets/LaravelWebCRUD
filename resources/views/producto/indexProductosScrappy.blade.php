@@ -21,8 +21,8 @@
                                     <img src="/assets/media/products/huawei.jpg" alt="" class="mw-100 w-200px">
                                 </div>
                                 <div class="overlay-layer">
-                                    <button type="button" id="bt1" onclick="vermodal()" class="btn font-weight-bolder btn-sm btn-primary mr-2" data-bs-toggle="modal" data-bs-target="#modal_ver_producto"> Quick View2 </button>
-                                    @yield('modal_detalles')
+                                    <button type="button" id="bt1" class="btn font-weight-bolder btn-sm btn-primary mr-2" data-toggle="modal" data-target="#modal_ver_producto"> Quick View2 </button>
+                                    
                                     <a href="#" class="btn font-weight-bolder btn-sm btn-light-primary">Purchase</a>
                                 </div>
                             </div>
@@ -288,11 +288,4 @@
         <!--end::Section-->
     </div>
 </div>
-
-@section('scripts')
-<script>
-
-</script>
-
-
-@endsection
+@include('modals.modalDetalles')
