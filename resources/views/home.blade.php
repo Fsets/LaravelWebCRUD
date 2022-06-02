@@ -6,7 +6,7 @@
                     @include('producto.indexProductosScrappy')
                     <!-- #include('usuario.tablaUsuarios')  hay q incluir el yield para llamar hay q estar logueados para  que funcione sino da error de variable users-->
                 @else
-                    @include('usuario.viewUsuario')
+                    @include('producto.indexProductosScrappy')
                 @endif
 </div>
 @endsection

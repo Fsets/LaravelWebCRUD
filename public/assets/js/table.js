@@ -62,8 +62,8 @@ function listaUsers() {
         sortable: !0,
         pagination: !0,
         search: {
-            input: $("#search_products"),
-            key: "search_products"
+            input: $("#search_users"),
+            key: "search_users"
         },
         translate: {
             records: {

@@ -39,6 +39,10 @@ class webController extends Controller
         
     }
 
+    public function ver_usuarios(){
+        return view('usuario.tablaUsuarios');
+    }
+
     public function logout(Request $request) {
         $r= $request->session()->flush(); //termina la sesion actual y redirige al login
         return redirect('/');
@@ -76,8 +80,8 @@ class webController extends Controller
 
         //Barra de busqueda
         $search = '';
-        if(isset($query['search_products'])){
-            $search = $query['search_products'];
+        if(isset($query['search_users'])){
+            $search = $query['search_users'];
         }
 
         $array_users = User::where('name', 'like', '%'.$search.'%')->skip($start)->take($skip)->get();

@@ -60,7 +60,6 @@
 				@if(Request::is('home*')) <!--si el menu esta seleccionado entonces cambia color-->
 				@include('layouts.subheader')<!-- incluye la subcabecera-->
 				@endif
-				@include('flash_message')
 
 				<div class="content d-flex flex-column-fluid">
 					

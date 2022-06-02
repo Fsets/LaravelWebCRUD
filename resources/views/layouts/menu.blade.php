@@ -39,17 +39,36 @@
                     @endif
                 </a>
             </li>
+
             @if(Auth::user()->role_id == 1) <!-- si el usuario es admin entonces puede ver esta pestaña-->
-            <li class="menu-item {{ Request::is('crear_user*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
-                <a href="{!! route('crear_user') !!}" class="menu-link">
-                    @if(Request::is('crear_user*')) <!--si el menu esta seleccionado entonces cambia color-->
-                    <span class="svg-icon menu-icon"><img src="{{url('assets/media/custom_identya/accion-editar-gris.svg')}}" width="20px" height="auto"></span>
-                    <span class="menu-text text-white">Crear Usuario</span>
+            <li class="menu-item {{ Request::is('ver_usuarios*') ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{!! route('ver_usuarios') !!}"  class="menu-link menu-toggle">
+                    @if(Request::is('ver_usuarios*')) <!--si el menu esta seleccionado entonces cambia color-->
+                    <span class="svg-icon menu-icon"><img src="{{url('assets/media/custom_identya/menu-perfil-blanco.svg')}}" width="20px" height="auto"></span>
+                    <span class="menu-text text-white">Usuarios</span>
                     @else
-                    <span class="svg-icon menu-icon"><img src="{{url('assets/media/custom_identya/accion-editar-gris.svg')}}" width="20px" height="auto"></span>
-                    <span class="menu-text text-color-purple-blue">Crear Usuario</span>
+                    <span class="svg-icon menu-icon"><img src="{{url('assets/media/custom_identya/menu-perfil-azul.svg')}}" width="20px" height="auto"></span>
+                    <span class="menu-text text-color-purple-blue">Usuarios</span>
                     @endif
+                    <i class="menu-arrow"></i>
                 </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="{!! route('ver_usuarios') !!}" class="menu-link">
+                                <span class="svg-icon menu-icon"><img src="{{url('assets/media/custom_identya/accion-ver-gris.svg')}}" width="20px" height="auto"></span>
+                                <span class="menu-text ">Ver Usuarios</span>
+                            </a>
+                        </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="{!! route('crear_user') !!}" class="menu-link">
+                                <span class="svg-icon menu-icon"><img src="{{url('assets/media/custom_identya/accion-editar-gris.svg')}}" width="20px" height="auto"></span>
+                                <span class="menu-text ">Añadir Nuevo Usuario</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
             @endif
             @if(Auth::user()->role_id == 1) <!-- si el usuario es admin entonces puede ver esta pestaña-->

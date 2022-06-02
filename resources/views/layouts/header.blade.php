@@ -1,6 +1,6 @@
 <div class="container-fluid d-flex align-items-stretch justify-content-between">
     <div>
-        
+        @include('flash_message')
     </div>
     <div class="topbar">
         <!--begin::User-->
