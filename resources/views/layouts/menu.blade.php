@@ -94,14 +94,14 @@
                                     <span class="menu-text ">Tabla Productos</span>
                                 </a>
                             </li>
-                            <li class="menu-item" aria-haspopup="true">
+                            <!--<li class="menu-item" aria-haspopup="true">
                                 <a href="{!! route('crear_producto') !!}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
                                         <span></span>
                                     </i>
                                     <span class="menu-text ">Añadir Nuevo Producto</span>
                                 </a>
-                            </li>
+                            </li>-->
                             <li class="menu-item" aria-haspopup="true">
                                 <a href="{!! route('view_producto') !!}" class="menu-link">
                                     <i class="menu-bullet menu-bullet-dot">
