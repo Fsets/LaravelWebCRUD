@@ -86,9 +86,9 @@ class ProductController extends Controller
             $search = $query['search_products'];
         }
 
-        $array_products = Producto::where('titulo', 'like', '%'.$search.'%')->skip($start)->take($skip)->get();
+        $array_products = Producto::where('MODELO', 'like', '%'.$search.'%')->skip($start)->take($skip)->get();
         //$array_users = User::where('name', 'like', '%'.$search.'%')->get();
-        $count_products = Producto::where('titulo', 'like', '%'.$search.'%')->count();
+        $count_products = Producto::where('MODELO', 'like', '%'.$search.'%')->count();
         
 
         $rowIds[]= array(); //declaramos variable que tiene todos los ids
@@ -115,7 +115,7 @@ class ProductController extends Controller
     
     public function get_producto($id){
         $producto = Producto::find($id);
-
+        
         $response['code'] = 1000;
         $response['producto'] = $producto;
         return response()->json($response);
@@ -130,16 +130,18 @@ class ProductController extends Controller
 
     public function new_product(Request $request)
     {
-        $file = $request->file('img');
+        $file = $request->file('IMAGEN');
         if($file){
             $name = $file->getClientOriginalName();
             $producto = Producto::create([
                 'id' => $request->id,
-                'titulo' => $request->titulo,
-                'precio' => $request->precio,
-                'cantidad' => $request->cantidad,
-                'descripcion' =>$request->descripcion,
-                'img' => $name,
+                'MARCA' => $request->MARCA,
+                'LINEA' => $request->LINEA,
+                'MODELO' => $request->MODELO,
+                'DESCRIPCION' =>$request->DESCRIPCION,
+                'PRECIO' =>$request->PRECIO,
+                'FECHA_SALIDA' =>$request->FECHA_SALIDA,
+                'IMAGEN' => $name,
             ]);
             $producto->save();
 
@@ -149,10 +151,12 @@ class ProductController extends Controller
         }else{
             $producto = Producto::create([
                 'id' => $request->id,
-                'titulo' => $request->titulo,
-                'precio' => $request->precio,
-                'cantidad' => $request->cantidad,
-                'descripcion' =>$request->descripcion,
+                'MARCA' => $request->MARCA,
+                'LINEA' => $request->LINEA,
+                'MODELO' => $request->MODELO,
+                'DESCRIPCION' =>$request->DESCRIPCION,
+                'PRECIO' =>$request->PRECIO,
+                'FECHA_SALIDA' =>$request->FECHA_SALIDA,
             ]);
             $producto->save();
 
@@ -182,25 +186,29 @@ class ProductController extends Controller
     public function edit_product(Request $request){
         $producto = Producto::find($request->id);
 
-        $file = $request->file('img');
+        $file = $request->file('IMAGEN');
         if($file){
             $name = $file->getClientOriginalName();
             $producto->id = $request->id;
-            $producto->titulo = $request->titulo;
-            $producto->precio = $request->precio;
-            $producto->cantidad = $request->cantidad;
-            $producto->descripcion = $request->descripcion;
-            $producto->img = $name;
+            $producto->MARCA = $request->MARCA;
+            $producto->LINEA = $request->LINEA;
+            $producto->MODELO = $request->MODELO;
+            $producto->DESCRIPCION = $request->DESCRIPCION;
+            $producto->PRECIO = $request->PRECIO;
+            $producto->FECHA_SALIDA = $request->FECHA_SALIDA;
+            $producto->IMAGEN = $name;
             $producto->save();  
 
             $file->move(public_path().'/assets/media/products', $name);
             return redirect('index_producto')->with('warning', 'Producto editado correctamente');
         }else{
             $producto->id = $request->id;
-            $producto->titulo = $request->titulo;
-            $producto->precio = $request->precio;
-            $producto->cantidad = $request->cantidad;
-            $producto->descripcion = $request->descripcion;
+            $producto->MARCA = $request->MARCA;
+            $producto->LINEA = $request->LINEA;
+            $producto->MODELO = $request->MODELO;
+            $producto->DESCRIPCION = $request->DESCRIPCION;
+            $producto->PRECIO = $request->PRECIO;
+            $producto->FECHA_SALIDA = $request->FECHA_SALIDA;
             $producto->save();
 
             return redirect("index_producto")->with('error', 'Falta añadir una imagen');

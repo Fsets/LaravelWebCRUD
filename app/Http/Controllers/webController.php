@@ -33,10 +33,15 @@ class webController extends Controller
         //
         $role = Role::all();
         $user = User::all();
-        $productos = Producto::all();
+        $productos = Producto::where('PRECIO', '<', 130)->orderBy('PRECIO', 'desc')->take(3)->get();
         $carrito = Carrito::all();
         return view("home")->with('user', $user)->with('role', $role)->with("productos", $productos)->with("carrito", $carrito); //para enviar datos al blade
         
+    }
+
+    public function masBaratos() {
+        $productos = Producto::where('PRECIO', '<', 140)->get();
+        return $productos;
     }
 
     public function ver_usuarios(){
@@ -260,7 +265,7 @@ class webController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->role_id = $request->role_id;
-            $user->foto_id = $name;
+            $user->ruta_foto = $name;
             $user->save();  
 
             $file->move(public_path().'/images', $name);

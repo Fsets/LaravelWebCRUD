@@ -10,22 +10,22 @@
                         <div class="col-xxl-5 mb-11 mb-xxl-0">
                             <!--begin::Image-->
                                 <div class="card-body p-0 rounded px-10 py-15 d-flex align-items-center justify-content-center">
-                                    <img src="/assets/media/products/huawei.jpg" class="mw-100 w-200px" style="transform: scale(1.6);">
+                                    <img src="/assets/media/products/{{$producto->IMAGEN}}" class="mw-100 w-200px" style="transform: scale(1.6);">
                                 </div>
                             <!--end::Image-->
                         </div>
                         <div class="col-xxl-7 pl-xxl-11">
-                            <h2 class="font-weight-bolder text-dark mb-7" style="font-size: 32px;">Nombre Producto</h2>
+                            <h2 class="font-weight-bolder text-dark mb-7" style="font-size: 32px;">{{$producto->LINEA}}</h2>
                             <div class="font-size-h2 mb-7 text-dark-50">Desde 
-                            <span class="text-info font-weight-boldest ml-2">295€</span></div>
+                            <span class="text-info font-weight-boldest ml-2">{{$producto->PRECIO}}€</span></div>
                             </div>
                     </div>
                     <div class="row mb-6">
                         <!--begin::Info-->
                         <div class="col-6 col-md-4">
                             <div class="mb-8 d-flex flex-column">
-                                <span class="text-dark font-weight-bold mb-4"><strong>Titulo del Producto</strong></span>
-                                <span class="text-muted font-weight-bolder font-size-lg">descripcion</span>
+                                <span class="text-dark font-weight-bold mb-4"><strong>{{$producto->MARCA}}</strong></span>
+                                <span class="text-muted font-weight-bolder font-size-lg">{{$producto->MODELO}}</span>
                             </div>
                         </div>
                         <!--end::Info-->
@@ -44,7 +44,7 @@
                                 </g>
                             </svg>
                             <!--end::Svg Icon-->
-                        </span>Comprar Producto</button>
+                        </span>Ver en la Web</button>
                     </div>
                     <!--end::Buttons-->
                 </div>

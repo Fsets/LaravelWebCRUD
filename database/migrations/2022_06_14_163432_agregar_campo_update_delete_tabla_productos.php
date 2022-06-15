@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('carritos', function (Blueprint $table) {
+        //
+        Schema::table('producto', function (Blueprint $table) {
             //
-            //el idProd de la tabla carritos hace referencia al id.productos, y si se actualiza a otro nombre se actualiza on cascade
-            $table->foreign('idProd')->references('id')->on('productos')->onUpdate('cascade');
+            $table->string('updated_at')->nullable(); 
+            $table->string('created_at')->nullable();
         });
     }
 
@@ -27,8 +28,11 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('carritos', function (Blueprint $table) {
+        //
+        Schema::table('producto', function (Blueprint $table) {
             //
+            $table-> dropColumn('updated_at');
+            $table-> dropColumn('created_at');
         });
     }
 };

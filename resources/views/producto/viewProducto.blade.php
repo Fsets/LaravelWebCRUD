@@ -27,16 +27,16 @@
                                     <!--begin::Pic-->
                                     <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
                                         <div class="symbol symbol-50 symbol-lg-100">
-                                            <img src="assets/media/products/{{$producto->img}}" >
-                                            <input type="file" src="assets/media/products/{{$producto->img}}" id="imgp" name="imgp" style="display: none;">
+                                            <img src="assets/media/products/{{$producto->IMAGEN}}" >
+                                            <input type="file" src="assets/media/products/{{$producto->IMAGEN}}" id="imgp" name="imgp" style="display: none;">
                                         </div>
                                     </div>
                                     <!--end::Pic-->
 
                                     <!--begin::Title-->
                                     <div class="d-flex flex-column">
-                                        <a href="#" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">{{$producto->titulo}}</a>
-                                        <input type="hidden" value="{{$producto->titulo}}" id="titulo" name="titulo">
+                                        <a href="#" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">{{$producto->LINEA}}</a>
+                                        <input type="hidden" value="{{$producto->LINEA}}" id="MODELO" name="LINEA">
                                     </div>
                                     <!--end::Title-->
                                 </div>
@@ -44,11 +44,19 @@
                             </div>
                             <!--end::User-->
                             <!--begin::Desc-->
+                            <div class="mb-1">
+                                <div class="d-flex justify-content-between align-items-center ">
+                                    <span class="text-dark-75 font-weight-bolder mr-2">Marca</span>
+                                    <p class="text-muted font-weight-bold">{{$producto->MARCA}}</p>
+                                    <input type="hidden" value="{{$producto->MARCA}}" id="MARCA" name="MARCA">
+                                    
+                                </div>
+                            </div>
                             <div class="mb-7">
-                                <div class="align-items-center ">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Descripcion:</span>
-                                    <p class="mb-7">{{$producto->descripcion}}</p>
-                                    <input type="hidden" value="{{$producto->descripcion}}" id="descripcion" name="descripcion">
+                                <div class="d-flex justify-content-between align-items-center ">
+                                    <span class="text-dark-75 font-weight-bolder mr-2">Modelo</span>
+                                    <p class="text-muted font-weight-bold">{{$producto->MODELO}}</p>
+                                    <input type="hidden" value="{{$producto->MODELO}}" id="MODELO" name="MODELO">
                                     
                                 </div>
                             </div>
@@ -56,13 +64,13 @@
                             <!--begin::Info-->
                             <div class="mb-7">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Precio:</span>
-                                    <span class="text-muted font-weight-bold">{{$producto->precio}} €</span>
-                                    <input type="hidden" value="{{$producto->precio}}" id="precio" name="precio">
+                                    <span class="text-dark-75 font-weight-bolder mr-2">Precio</span>
+                                    <span class="text-muted font-weight-bold">{{$producto->PRECIO}} €</span>
+                                    <input type="hidden" value="{{$producto->PRECIO}}" id="PRECIO" name="PRECIO">
                                 </div>
                             </div>
                             <!--end::Info-->
-                            <button type="submit" class="btn btn-block btn-sm btn-light-warning font-weight-bolder text-uppercase py-4">Agregar al Carrito</button>
+                            <button type="submit" class="btn btn-block btn-sm btn-light-warning font-weight-bolder text-uppercase py-4">Ver en la Web</button>
                             
                         </form>
                         </div>

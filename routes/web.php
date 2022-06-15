@@ -33,6 +33,8 @@ Route::group(['middleware' => ['auth', 'verified']], function(){ //comprueba si 
     Route::get('/get_user/{id}', [App\Http\Controllers\webController::class, 'get_user'])->name('get_user');
     Route::post('/edit_usuario', [App\Http\Controllers\webController::class, 'edit_usuario'])->name('edit_usuario')->middleware('role:role_id');
     Route::get('/ver_usuarios', [App\Http\Controllers\webController::class, 'ver_usuarios'])->name('ver_usuarios');
+    
+    Route::get('/masBaratos', [App\Http\Controllers\webController::class, 'masBaratos'])->name('masBaratos');
 
     Route::resource('producto', Producto::class)->middleware('role:role_id'); //sirve para usarlo en {{route(usuario.vistaquequeremosutilizar)}}
     Route::get('/index_producto', [App\Http\Controllers\ProductController::class, 'index_producto'])->name('index_producto');

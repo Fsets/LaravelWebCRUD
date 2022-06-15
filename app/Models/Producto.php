@@ -9,12 +9,18 @@ class Producto extends Model
 {
     use HasFactory;
 
+    public $table = 'producto';
+
     protected $fillable = [
-        'titulo',
-        'precio',
-        'cantidad',
-        'descripcion',
-        'img',
+        'ID',
+        'MARCA',
+        'LINEA',
+        'MODELO',
+        'DESCRIPCION',
+        'PRECIO',
+        'FECHA_SALIDA',
+        'IMAGEN',
+        'ID_PAGINA'
     ];
     
     public function user(){

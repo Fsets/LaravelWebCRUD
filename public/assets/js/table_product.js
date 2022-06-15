@@ -78,40 +78,47 @@ function listaProductos() {
         rows: {
             autoHide: false,
         },
-        columns: [{
-                field: "id",
-                title: "ID",
-                sortable: !1,
-                textAlign: "center"
-            },
+        columns: [
             {
-                field: "titulo",
-                title: "Producto",
-                sortable: !1,
-                textAlign: "center",
-
-            },
-            {
-                field: "precio",
-                title: "Precio",
-                sortable: !1,
-                textAlign: "center",
-            },
-            {
-                field: "cantidad",
-                title: "Cantidad",
-                sortable: !1,
-                textAlign: "center",
-            },
-            {
-                field: "img",
+                field: "IMAGEN",
                 title: 'Imagen',
                 textAlign: "center",
                 sortable: !1,
                 autoHide: false,
                 template: function(row, data, index) {
-                    return '<img src="' + url_upload_img + '/' + row.img + '" width="50px" height="auto">';
+                    return '<img src="' + url_upload_img + '/' + row.IMAGEN + '" width="50px" height="auto">';
                 },
+            },
+            {
+                field: "MARCA",
+                title: "Marca Producto",
+                sortable: !1,
+                textAlign: "center",
+
+            },
+            {
+                field: "LINEA",
+                title: "Linea",
+                sortable: !1,
+                textAlign: "center",
+            },
+            {
+                field: "MODELO",
+                title: "Modelo",
+                sortable: !1,
+                textAlign: "center",
+            },
+            {
+                field: "PRECIO",
+                title: "Precio",
+                sortable: !1,
+                textAlign: "center",
+            },
+            {
+                field: "FECHA_SALIDA",
+                title: "Fecha de Salida",
+                sortable: !1,
+                textAlign: "center",
             },
             {
                 field: "#",
@@ -171,8 +178,14 @@ function getProduct(id) {
                 var producto = response.producto;
                 //para quitar el autorrelleno
                 $('#ide').val(producto.id);
-                $('#tituloe').val(producto.titulo);
-                $('#descriptione').val(producto.description);
+                $('#MARCA').val(producto.MARCA);
+                $('#LINEA').val(producto.LINEA);
+                $('#MODELO').val(producto.MODELO);
+                $('#DESCRIPCION').val(producto.DESCRIPCION);
+                $('#PRECIO').val(producto.PRECIO);
+                $('#FECHA_SALIDA').val(producto.FECHA_SALIDA);
+
+                //$('#descriptione').val(producto.description);
 
                 $('#editProducto').modal('show'); //si no aparece al pulsar el bt es q no tenemos bn metido el html
             } else {

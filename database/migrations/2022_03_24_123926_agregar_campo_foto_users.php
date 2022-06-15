@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('ruta_foto'); //almacenar un id para enlazar tabla usuarios cnm tabla fotos
+            $table->string('ruta_foto')->nullable(); //almacenar un id para enlazar tabla usuarios cnm tabla fotos
         });
     }
 

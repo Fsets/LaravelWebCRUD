@@ -101,13 +101,13 @@ function listaUsers() {
                 textAlign: "center",
             },
             {
-                field: "foto_id",
+                field: "ruta_foto",
                 title: 'Imagen',
                 textAlign: "center",
                 sortable: !1,
                 autoHide: false,
                 template: function(row, data, index) {
-                    return '<img src="' + url_upload_img + '/' + row.foto_id + '" width="50px" height="auto">';
+                    return '<img src="' + url_upload_img + '/' + row.ruta_foto + '" width="50px" height="auto">';
                 },
             },
             {
