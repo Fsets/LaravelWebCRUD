@@ -19,7 +19,6 @@
                                 @foreach($items as $item)
                                 <input type="hidden" value="1" id="cantidad_prod" name="cantidad_prod">
                                 @endforeach
-
                             <!--begin::User-->
                             <div class="d-flex align-items-end mb-7">
                                 <!--begin::Pic-->
@@ -49,7 +48,6 @@
                                     <span class="text-dark-75 font-weight-bolder mr-2">Marca</span>
                                     <p class="text-muted font-weight-bold">{{$producto->MARCA}}</p>
                                     <input type="hidden" value="{{$producto->MARCA}}" id="MARCA" name="MARCA">
-                                    
                                 </div>
                             </div>
                             <div class="mb-7">

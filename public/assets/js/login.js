@@ -149,7 +149,7 @@ var KTLogin = function() {
 
             validation.validate().then(function(status) {
                 if (status == 'Valid') {
-                    form.submit();
+                    form.submit(); //si todos los datos son validos guardamos cambios en la base de DATOS
                 } else {
                     swal.fire({
                         text: "Sorry, you must fill in all the fields.",

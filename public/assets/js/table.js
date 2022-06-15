@@ -123,7 +123,7 @@ function listaUsers() {
     });
 }
 
-function deleteUser(id) {
+function deleteUser(id) { //recogemos el id del usuario al que
     var url = url_delete_user + "/" + id;
 
     $.ajax({
@@ -152,7 +152,7 @@ function deleteUser(id) {
     });
 }
 
-function getUser(id) {
+function getUser(id) { //para recoger el id del usuario al que queremos editar en la base de datos
     var url = url_get_user + "/" + id;
 
     $.ajax({

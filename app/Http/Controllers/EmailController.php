@@ -17,8 +17,8 @@ class EmailController extends Controller
     {
         //
         $datos= [
-            "titulo"=> "Probando",
-            "contenido"=>"Esto es una prueba de envio"
+            "titulo"=> "El producto ya esta a la venta",
+            "contenido"=>"Accede rapidamente a la web y compra los productos mas limitados antes de que sea demasiado tarde!!"
         ];
         //3 parametros 1 documento que le da formato a ese correo electronico(una view), 2 el array, 3 funcion que recibe una variable que especifica a quien va el correo
         Mail::send("email.emailView",$datos, function($mensaje){

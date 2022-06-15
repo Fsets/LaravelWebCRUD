@@ -259,8 +259,8 @@ class webController extends Controller
         $user = User::find($request->id);
 
         $file = $request->file('foto_id');
-        if($file){
-            $name = $file->getClientOriginalName();
+        if($file){ //si tiene imagen
+            $name = $file->getClientOriginalName(); // recogemos la imagen 
             $user->id = $request->id;
             $user->name = $request->name;
             $user->email = $request->email;
@@ -329,6 +329,6 @@ class webController extends Controller
         //$product->save();
         $user->delete();
         $response['code'] = 1000;
-        return response()->json($response);
+        return response()->json($response); //envia la respuesta de confirmacion
     }
 }
