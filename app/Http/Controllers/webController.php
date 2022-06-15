@@ -6,6 +6,7 @@ use App\Models\Carrito;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Producto;
+use App\Models\Pagina;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Foto;
 use App\Http\Requests\RegisterRequest;
@@ -31,11 +32,16 @@ class webController extends Controller
     public function index()
     {
         //
-        $role = Role::all();
         $user = User::all();
         $productos = Producto::where('PRECIO', '<', 130)->orderBy('PRECIO', 'desc')->take(3)->get();
-        $carrito = Carrito::all();
-        return view("home")->with('user', $user)->with('role', $role)->with("productos", $productos)->with("carrito", $carrito); //para enviar datos al blade
+
+
+        $actual = date('Y-m-d H:i:s');
+        $productosCercanos = Producto::where('FECHA_SALIDA', '>=',$actual)->orderBy('FECHA_SALIDA', 'asc')->take(3)->get();
+
+        $lastProductos = Producto::where('MARCA', 'nike')->orderBy('FECHA_SALIDA', 'desc')->take(3)->get();
+
+        return view("home")->with('user', $user)->with("productos", $productos)->with("lastProductos", $lastProductos)->with("productosCercanos", $productosCercanos); //para enviar datos al blade
         
     }
 
@@ -51,6 +57,12 @@ class webController extends Controller
     public function logout(Request $request) {
         $r= $request->session()->flush(); //termina la sesion actual y redirige al login
         return redirect('/');
+    }
+
+    public function verWeb($id) {
+        $productos = Producto::where('ID', $id)->first();
+        $pagina = Pagina::where('id', $productos->ID_PAGINA)->first();
+        return redirect($pagina->URL);
     }
 
     public function crear_user()
@@ -206,7 +218,7 @@ class webController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' =>bcrypt($request->password),
-                'foto_id' => $name,
+                'ruta_foto' => $name,
                 'role_id' => $request->role_id
             ]);
             $user->save();  
@@ -323,7 +335,7 @@ class webController extends Controller
     }*/
 
     public function delete_user($id){
-        $user = User::find($id);
+        $user = User::where('id', $id)->first();
         //no borra en la bd sino q borraria el usuario pero permanece en la bd
         //$product->deleted_at = date("Y-m-d H:i:s");
         //$product->save();

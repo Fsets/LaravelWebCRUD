@@ -13,7 +13,6 @@
                     <div class="card card-custom gutter-b card-stretch">
                         <!--begin::Body-->
                         <div class="card-body pt-4">
-                            <form method="POST" action="{{ route('add_product') }}" enctype="multipart/form-data"> <!-- llama al store para guardar la info en la bd-->
                                 {{ csrf_field() }}
                                 <input type="hidden" value="{{ $producto->id }}" id="idp" name="idp">
                                 @foreach($items as $item)
@@ -68,9 +67,7 @@
                                 </div>
                             </div>
                             <!--end::Info-->
-                            <button type="submit" class="btn btn-block btn-sm btn-light-warning font-weight-bolder text-uppercase py-4">Ver en la Web</button>
-                            
-                        </form>
+                            <a href="{!! route('verWeb',['id'=>$producto->ID_PAGINA]) !!}" class="btn btn-block btn-sm btn-light-warning font-weight-bolder text-uppercase py-4">Ver en la Web</a>
                         </div>
                         <!--end::Body-->
                     </div>

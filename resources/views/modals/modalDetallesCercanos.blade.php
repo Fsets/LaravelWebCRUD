@@ -1,7 +1,7 @@
 
   <!-- Modal -->
-  @foreach($productos as $producto)
-  <div class="modal fade" id="modal_ver_producto-{{$producto->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  @foreach($productosCercanos as $prodCerc)
+  <div class="modal fade" id="modal_ver_producto-{{$prodCerc->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-body">
@@ -11,14 +11,14 @@
                         <div class="col">
                             <!--begin::Image-->
                                 <div class="card-body p-0 rounded px-10 py-15 d-flex align-items-center justify-content-center">
-                                    <img src="/assets/media/products/{{$producto->IMAGEN}}" class="mw-100 w-200px" style="transform: scale(1.6);">
+                                    <img src="/assets/media/products/{{$prodCerc->IMAGEN}}" class="mw-100 w-200px" style="transform: scale(1.6);">
                                 </div>
                             <!--end::Image-->
                         </div>
                         <div class="col ">
-                            <h2 class="font-weight-bolder text-dark mb-7" style="font-size: 32px;">{{$producto->LINEA}}</h2>
+                            <h2 class="font-weight-bolder text-dark mb-7" style="font-size: 32px;">{{$prodCerc->LINEA}}</h2>
                             <div class="font-size-h2 mb-7 text-dark-50">Desde 
-                            <span class="text-info font-weight-boldest ml-2">{{$producto->PRECIO}}€</span></div>
+                            <span class="text-info font-weight-boldest ml-2">{{$prodCerc->PRECIO}}€</span></div>
                             </div>
                     </div>
                     <div class="row mb-6">
@@ -32,9 +32,9 @@
                         </div>
                         <div class="col-6">
                             <div class="mb-8 d-flex flex-column">
-                                <span class="text-dark font-weight-bold mb-4"><strong>{{$producto->MARCA}}</strong></span>
-                                <span class="text-muted font-weight-bolder font-size-lg mb-4">{{$producto->MODELO}}</span>
-                                <span class="text-muted font-weight-bolder font-size-lg">{{$producto->FECHA_SALIDA}}</span>
+                                <span class="text-dark font-weight-bold mb-4"><strong>{{$prodCerc->MARCA}}</strong></span>
+                                <span class="text-muted font-weight-bolder font-size-lg mb-4">{{$prodCerc->MODELO}}</span>
+                                <span class="text-muted font-weight-bolder font-size-lg">{{$prodCerc->FECHA_SALIDA}}</span>
                             </div>
                         </div>
                         <!--end::Info-->
@@ -42,7 +42,7 @@
                     <!--begin::Buttons-->
                     <div class="d-flex">
                         <button type="button" class="btn btn-primary font-weight-bolder mr-6 px-6 font-size-sm" data-dismiss="modal">Cerrar</button>
-                        <a href="{!! route('verWeb',['id'=>$producto->ID_PAGINA]) !!}" class="btn btn-light-primary font-weight-bolder px-8 font-size-sm"> 
+                        <a href="{!! route('verWeb',['id'=>$prodCerc->ID_PAGINA]) !!}" class="btn btn-light-primary font-weight-bolder px-8 font-size-sm"> 
                         <span class="svg-icon">
                             <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Files/File-done.svg-->
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">

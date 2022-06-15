@@ -165,7 +165,7 @@ function deleteProduct(id) {
 function getProduct(id) {
     var url = url_get_product + "/" + id;
 
-    $.ajax({
+    $.ajax({ 
         data: '',
         url: url,
         dataType: 'json',

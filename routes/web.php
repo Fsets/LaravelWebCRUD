@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth', 'verified']], function(){ //comprueba si 
     Route::post('/list_usuarios_normales', [App\Http\Controllers\webController::class, 'list_usuarios_normales'])->name('list_usuarios_normales'); //javascript tablejs userview
     Route::get('/delete_user/{id}', [App\Http\Controllers\webController::class, 'delete_user'])->name('delete_user')->middleware('role:role_id');
     Route::get('/get_user/{id}', [App\Http\Controllers\webController::class, 'get_user'])->name('get_user');
+    Route::get('/verWeb/{id}', [App\Http\Controllers\webController::class, 'verWeb'])->name('verWeb');
     Route::post('/edit_usuario', [App\Http\Controllers\webController::class, 'edit_usuario'])->name('edit_usuario')->middleware('role:role_id');
     Route::get('/ver_usuarios', [App\Http\Controllers\webController::class, 'ver_usuarios'])->name('ver_usuarios');
     
