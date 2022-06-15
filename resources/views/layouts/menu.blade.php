@@ -2,7 +2,7 @@
 <div class="brand flex-column-auto" id="kt_brand" kt-hidden-height="65">
     <!--begin::Logo-->
     <a href="#" class="brand-logo">
-        <img alt="Logo" src="{{asset('assets/media/custom_identya/identya-logotipo-negativo.svg')}}" width="90%" height="auto">
+        <img alt="Logo" src="{{asset('images/scrapy_logo.jpg')}}" width="80%" height="auto">
     </a>
     <!--end::Logo-->
     <!--begin::Toggle-->
